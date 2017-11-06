@@ -3,6 +3,7 @@ import {savePost} from '../actions/postActions'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import CategorySelect from './CategorySelect'
 
 class Post extends Component {
 
@@ -32,8 +33,7 @@ class Post extends Component {
                                 placeholder='post title' className="w3-simple-input" /> }
                             </div> 
                             <div className="w3-col m4 s12">
-                                {reading?<h4><b>Category</b></h4>:<input name="category" type='text'
-                                placeholder='post title' defaultValue="react" className="w3-simple-input" /> }
+                                <CategorySelect />
                             </div>          
                         </div>            
                         {reading?<h5>Author, <span className="w3-opacity">April 7, 2014</span></h5>:<input name="author" type='text'
@@ -62,8 +62,5 @@ class Post extends Component {
 
 }
 
-const mapStateToProps = ({ posts, categories }) => ({
-    categories
-  })
-  
-export default withRouter(connect(mapStateToProps, { savePost })(Post))
+ 
+export default withRouter(connect(null, { savePost })(Post))
