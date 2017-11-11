@@ -11,7 +11,7 @@ class CategorySelect extends Component {
             <select name='category'>
                 { categories && (
                     categories.map( (category) => (
-                        <option value={category.name}>{category.name}</option>
+                        <option key={category.name} value={category.name}>{category.name}</option>
                     ))
                 )}    
             </select>

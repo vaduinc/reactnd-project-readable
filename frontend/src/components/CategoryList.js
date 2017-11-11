@@ -11,6 +11,8 @@ class CategoryList extends Component {
     render() {
 
         const { categories } = this.props.categories
+        
+        console.log(this.props)
 
         return (    
             <div className="w3-col l3">
@@ -22,7 +24,7 @@ class CategoryList extends Component {
                     <ul className="w3-ul w3-hoverable w3-white">
                         { categories && (
                             categories.map( (category) => (
-                                <li key={category.name} className="w3-padding-16">
+                                <li key={category.name} onClick={() => this.props.onChangeCategory(category.name) } className="w3-padding-16">
                                     <span className="w3-large">{category.name}</span><br/>
                                 </li>
                             ))    

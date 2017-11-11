@@ -212,11 +212,11 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-border-black,.w3-hover-border-black:hover{border-color:#000!important}
 .w3-border-grey,.w3-hover-border-grey:hover,.w3-border-gray,.w3-hover-border-gray:hover{border-color:#bbb!important} 
 
-.open-search {
+/* .open-search {
   position: fixed;
   right: 25px;
   bottom: 25px;
-}
+} */
 .open-search a {
   display: block;
   width: 50px;
@@ -229,4 +229,16 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   background-size: 28px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 0;
+}
+
+.showing-contacts {
+  text-align: center;
+  margin: 20px 0;
+}
+.showing-contacts button {
+  color: blue;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
 }

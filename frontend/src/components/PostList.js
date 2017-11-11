@@ -8,19 +8,44 @@ class PostList extends Component {
         this.props.fetchPosts()
     }
 
+    /**
+     * https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
+     * @param {*} property 
+     */
+    dynamicSort(property) {
+        var sortOrder = 1;
+        if(property[0] === "-") {
+            sortOrder = -1;
+            property = property.substr(1);
+        }
+        return function (a,b) {
+            var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+            return result * sortOrder;
+        }
+    }
+
+
     render() {
 
         const { posts } = this.props.posts
 
+        let filteredPost = posts || []
+        if (this.props.filterCategory){
+            filteredPost = filteredPost.filter((item) => item.category===this.props.filterCategory)
+        }
+
+        filteredPost.sort(this.dynamicSort(this.props.sorted))
+
         return (    
+
             <div className="w3-col l6 s12">     
                 
-                { posts && (
-                    posts.map( (post) => (
+                { 
+                    filteredPost.map( (post) => (
                     <div key={post.id} className="w3-card-4 w3-margin w3-white">
                         <div className="w3-container">
-                            <h3><b>{post.title}</b></h3>
-                            <h5>{post.author}, <span className="w3-opacity">April 7, 2014</span></h5>
+                            <h3><b>{post.title}</b> ({post.category})</h3>
+                            <h5>{post.author}, <span className="w3-opacity">{(new Date(post.timestamp)).toDateString()}</span></h5>
                         </div>
 
                         <div className="w3-container">
@@ -30,13 +55,13 @@ class PostList extends Component {
                                     <p><button className="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
                                 </div>
                                 <div className="w3-col m4 w3-hide-small">
-                                    <p><span className="w3-padding-large w3-right"><b>Comments  </b> <span className="w3-tag">0</span></span></p>
+                                    <p><span className="w3-padding-large w3-right"><b>Votes  </b> <span className="w3-tag">{post.voteScore}</span></span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     ))    
-                )} 
+                } 
             </div>    
         )
     }

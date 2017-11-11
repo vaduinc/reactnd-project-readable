@@ -51,7 +51,7 @@ class Post extends Component {
                                 <p><button className="w3-button w3-padding-large w3-white w3-border"><b>SAVE POST »</b></button></p>
                             </div>
                             <div className="w3-col m4 w3-hide-small">
-                                <p><span className="w3-padding-large w3-right"><b>Comments  </b> <span className="w3-tag">0</span></span></p>
+                                <p><span className="w3-padding-large w3-right"><b>Votes  </b> <span className="w3-tag">0</span></span></p>
                             </div>
                         </div>
                     </div>
