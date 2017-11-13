@@ -35,8 +35,9 @@ class App extends Component {
     
    }
 
-   updateAfterSearch () {
-
+   updateAfterSave (didChange) {
+      console.log('values were changed ; ' + didChange)
+      // TODO add a message box notifying about SAVED
    }
 
    changeCategory = (newValue) => {

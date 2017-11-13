@@ -10,14 +10,13 @@ class Post extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const values = serializeForm(e.target, { hash: true })
-        console.log(values)
         this.props.savePost(values)
+        this.onReturn(true)
+    }
 
-        // if (this.props.onSavedPost){
-        //   this.props.onSavedPost(true)
-        // }  
-      }
-
+    onReturn = (didChange) => {
+        this.props.onSavedPost(didChange)
+    }
 
     render() {
 
@@ -48,7 +47,9 @@ class Post extends Component {
                         placeholder='body content' className="w3-simple-input" /> }
                         <div className="w3-row">
                             <div className="w3-col m8 s12">
-                                <p><button className="w3-button w3-padding-large w3-white w3-border"><b>SAVE POST »</b></button></p>
+                                <br/>
+                                <button className="w3-button w3-padding-large w3-white w3-border"><b>Save</b></button>
+                                <button type='button' onClick={()=> this.onReturn(false)} className="w3-button w3-padding-large w3-white w3-border"><b>Cancel</b></button>
                             </div>
                             <div className="w3-col m4 w3-hide-small">
                                 <p><span className="w3-padding-large w3-right"><b>Votes  </b> <span className="w3-tag">0</span></span></p>
