@@ -20,27 +20,33 @@ class Post extends Component {
 
     render() {
 
-        const { reading } = this.props
+        const { action, postId } = this.props.match.params
+        const { posts } = this.props.posts
 
+        let currentPost
+        if (action!=='add'){
+            currentPost = posts.filter( (item) => item.id===postId)[0]
+        }
+        console.log(currentPost)
         return (    
             <div className="w3-card-4 w3-margin w3-white">
                 <form onSubmit={this.handleSubmit} >
                     <div className="w3-container">
                         <div className="w3-row">
                             <div className="w3-col m8 s12">
-                                {reading?<h3><b>TITLE HEADING</b></h3>:<input name="title" type='text'
-                                placeholder='post title' className="w3-simple-input" /> }
+                                {action==='read'?<h3><b>{currentPost.title}</b></h3>
+                                :<input name="title" type='text' defaultValue={currentPost?currentPost.title:''} placeholder='post title' className="w3-simple-input" />}
                             </div> 
                             <div className="w3-col m4 s12">
                                 <CategorySelect />
                             </div>          
                         </div>            
-                        {reading?<h5>Author, <span className="w3-opacity">April 7, 2014</span></h5>:<input name="author" type='text'
+                        {postId?<h5>Author, <span className="w3-opacity">April 7, 2014</span></h5>:<input name="author" type='text'
                         placeholder='author' className="w3-simple-input" /> }
                     </div>
 
                     <div className="w3-container">
-                        {reading?
+                        {postId?
                             <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
                             tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
                         :<textarea name="body" 
@@ -63,5 +69,8 @@ class Post extends Component {
 
 }
 
+const mapStateToProps = ({ posts, categories }) => ({
+    posts
+})
  
-export default withRouter(connect(null, { savePost })(Post))
+export default withRouter(connect(mapStateToProps, { savePost })(Post))

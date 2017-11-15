@@ -71,7 +71,7 @@ class App extends Component {
                         <div className="w3-container">
                             <div className="w3-row">
                                 <div className="w3-col m2 s12">
-                                    <p className="open-search"><Link to="/post" >Add Post</Link></p>
+                                    <p className="open-search"><Link to="/post/add" >Add Post</Link></p>
                                 </div>
                                 <div className="w3-col m4 s12">
                                   <br/>
@@ -97,9 +97,8 @@ class App extends Component {
                 <CategoryList onChangeCategory={this.changeCategory} />
             </div>
           )}/>  
-          <Route path='/post' render={({ history }) => (
+          <Route path='/post/:action/:postId?' render={({ history }) => (
             <Post 
-                reading={false}
                 onSavedPost={ (didChange) => {
                   this.updateAfterSave(didChange)
                   history.push('/')

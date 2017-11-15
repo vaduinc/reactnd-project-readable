@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link  } from 'react-router-dom'
 import {fetchPosts} from '../actions/postActions'
 
 class PostList extends Component {
@@ -52,7 +53,7 @@ class PostList extends Component {
                             <p>{post.body}</p>
                             <div className="w3-row">
                                 <div className="w3-col m8 s12">
-                                    <p><button className="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+                                    <p><button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/post/read/${post.id}`} >READ MORE »</Link></b></button></p>
                                 </div>
                                 <div className="w3-col m4 w3-hide-small">
                                     <p><span className="w3-padding-large w3-right"><b>Votes  </b> <span className="w3-tag">{post.voteScore}</span></span></p>
