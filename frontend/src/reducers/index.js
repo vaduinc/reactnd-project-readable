@@ -13,6 +13,13 @@ function posts (state = [], action){
                 ...state,
                 posts: state.posts.concat(post)
             }
+        case EDIT_POST :
+            const { updatedPost } = action
+            console.log(updatedPost)
+            return {
+                ...state,
+                posts: state.posts.concat(updatedPost)
+            }    
         case RECEIVE_ALL_POSTS :
             const { posts } = action
             console.log(posts)

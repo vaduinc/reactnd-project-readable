@@ -26,3 +26,18 @@ export function saveNewPosts(post) {
       .then( (res) =>  res.json() )
     }
   
+export function saveExistingPosts(post) {
+        const url = `${process.env.REACT_APP_BACKEND}/posts/${post.id}`;
+        console.log('saving existing post', url);
+        
+        return fetch(url, { 
+                     method: 'PUT',
+                     headers: { 'Authorization': 'whatever-you-want' , 'content-type': 'application/json'  },
+                     credentials: 'include' ,
+                     body : JSON.stringify({
+                                            title : post.title,
+                                            body : post.body
+                                            })             
+                    })
+          .then( (res) =>  res.json() )
+        }    
