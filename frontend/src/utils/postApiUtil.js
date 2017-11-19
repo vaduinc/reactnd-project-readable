@@ -22,8 +22,10 @@ export function getPost(postId) {
 export function saveNewPosts(post) {
     const url = `${process.env.REACT_APP_BACKEND}/posts`;
     console.log('saving post', url);
+    console.log(post);
     post.id = v4()
     post.timestamp = Date.now()
+    console.log('ABOUT TO MAKE REQUEST WITH');
     console.log(post);
     
     return fetch(url, { 

@@ -107,6 +107,7 @@ class App extends Component {
           )}/>
           <Route path='/postSave/:action/:postId?' render={({ history }) => (
             <PostSave 
+                action='edit'
                 onSavedPost={ (didChange) => {
                   this.updateAfterSave(didChange)
                   history.push('/')
