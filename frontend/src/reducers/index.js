@@ -15,11 +15,17 @@ function posts (state = [], action){
             }
         case EDIT_POST :
             const { updatedPost } = action
-            console.log(updatedPost)
-            return {
-                ...state,
-                posts: state.posts.concat(updatedPost)
-            }    
+            console.log(state.posts)
+            return {posts : state.posts.map( (item) => {
+                            if (item.id !== updatedPost.id){
+                                return item;
+                            }
+                            return {
+                                ...item,
+                                ...updatedPost
+                            } 
+                        })
+                    }
         case RECEIVE_ALL_POSTS :
             const { posts } = action
             console.log(posts)
@@ -27,6 +33,13 @@ function posts (state = [], action){
                 ...state,
                 posts: posts
             }   
+        // case RECEIVE_POST :
+        //     const { editPost } = action
+        //     console.log(editPost)
+        //     return {
+        //         ...state,
+        //         post: editPost
+        //     }      
         default :
             return state    
     }

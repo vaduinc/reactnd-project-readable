@@ -1,13 +1,22 @@
 import { v4 } from 'uuid';
 
 export function getPosts() {
-    const url = `${process.env.REACT_APP_BACKEND}/posts`;
+    const url = `${process.env.REACT_APP_BACKEND}/posts`
     console.log('fetching from url', url);
     
     return fetch(url, { headers: { 'Authorization': 'whatever-you-want' },
                  credentials: 'include' } )
       .then( (res) =>  res.json() )
-      .then((data) =>  data )
+     // .then((data) =>  data )
+}
+
+export function getPost(postId) {
+    const url = `${process.env.REACT_APP_BACKEND}/posts/${postId}`
+    console.log('fetching from url', url);
+    
+    return fetch(url, { headers: { 'Authorization': 'whatever-you-want' },
+                 credentials: 'include' } )
+      .then( (res) =>  res.json() )
 }
 
 export function saveNewPosts(post) {
@@ -27,17 +36,14 @@ export function saveNewPosts(post) {
     }
   
 export function saveExistingPosts(post) {
-        const url = `${process.env.REACT_APP_BACKEND}/posts/${post.id}`;
+        const url = `${process.env.REACT_APP_BACKEND}/posts/${post.id}`
         console.log('saving existing post', url);
         
         return fetch(url, { 
                      method: 'PUT',
                      headers: { 'Authorization': 'whatever-you-want' , 'content-type': 'application/json'  },
                      credentials: 'include' ,
-                     body : JSON.stringify({
-                                            title : post.title,
-                                            body : post.body
-                                            })             
+                     body : JSON.stringify(post)             
                     })
           .then( (res) =>  res.json() )
         }    

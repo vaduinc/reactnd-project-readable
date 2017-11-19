@@ -30,7 +30,9 @@ class PostList extends Component {
 
         const { posts } = this.props.posts
 
+        console.log(posts)
         let filteredPost = posts || []
+        console.log(filteredPost)
         if (this.props.filterCategory){
             filteredPost = filteredPost.filter((item) => item.category===this.props.filterCategory)
         }
@@ -53,7 +55,7 @@ class PostList extends Component {
                             <p>{post.body}</p>
                             <div className="w3-row">
                                 <div className="w3-col m8 s12">
-                                    <p><button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/post/read/${post.id}`} >READ MORE »</Link></b></button></p>
+                                    <p><button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/post/${post.id}`} >READ MORE »</Link></b></button></p>
                                 </div>
                                 <div className="w3-col m4 w3-hide-small">
                                     <p><span className="w3-padding-large w3-right"><b>Votes  </b> <span className="w3-tag">{post.voteScore}</span></span></p>

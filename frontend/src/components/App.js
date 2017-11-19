@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import CategoryList from './CategoryList'
 import PostList from './PostList'
 import Post from './Post'
+import PostSave from './PostSave'
 import Header from './Header'
 import '../App.css'
 
@@ -16,7 +17,6 @@ class App extends Component {
         sortBy: 'voteScore'
       }
     }
-
 
    componentDidMount() {
   //   const url = `${process.env.REACT_APP_BACKEND}/categories`;
@@ -71,7 +71,7 @@ class App extends Component {
                         <div className="w3-container">
                             <div className="w3-row">
                                 <div className="w3-col m2 s12">
-                                    <p className="open-search"><Link to="/post/add" >Add Post</Link></p>
+                                    <p className="open-search"><Link to="/postSave/add" >Add Post</Link></p>
                                 </div>
                                 <div className="w3-col m4 s12">
                                   <br/>
@@ -97,8 +97,16 @@ class App extends Component {
                 <CategoryList onChangeCategory={this.changeCategory} />
             </div>
           )}/>  
-          <Route path='/post/:action/:postId?' render={({ history }) => (
+          <Route path='/post/:postId?' render={({ history }) => (
             <Post 
+                onSavedPost={ (didChange) => {
+                  this.updateAfterSave(didChange)
+                  history.push('/')
+                } }
+              />
+          )}/>
+          <Route path='/postSave/:action/:postId?' render={({ history }) => (
+            <PostSave 
                 onSavedPost={ (didChange) => {
                   this.updateAfterSave(didChange)
                   history.push('/')
