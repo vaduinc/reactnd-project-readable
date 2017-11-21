@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter , Link} from 'react-router-dom';
 import CategorySelect from './CategorySelect'
+import Votes from './Votes'
 
 class Post extends Component {
 
@@ -42,7 +43,7 @@ class Post extends Component {
                                 <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/postSave/edit/${currentPost.id}`} >Edit</Link></b></button>
                             </div>
                             <div className="w3-col m4 w3-hide-small">
-                                <p><span className="w3-padding-large w3-right"><b>Votes  </b> <span className="w3-tag">0</span></span></p>
+                                <Votes enableChange='true' postId={currentPost.id}  voteScore={currentPost.voteScore}/>
                             </div>
                         </div>
                     </div>

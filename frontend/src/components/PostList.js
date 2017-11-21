@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link  } from 'react-router-dom'
 import {fetchPosts,sendVote,UP_VOTE_POST,DOWN_VOTE_POST} from '../actions/postActions'
+import Votes from './Votes'
 
 class PostList extends Component {
 
@@ -25,19 +26,11 @@ class PostList extends Component {
         }
     }
 
-    onVote = (postId,type) => {
-        console.log(`This id ${postId} type ${type}`)
-        this.props.sendVote(postId,type)
-    }
-
-
     render() {
 
         const { posts } = this.props.posts
 
-        console.log(posts)
         let filteredPost = posts || []
-        console.log(filteredPost)
         if (this.props.filterCategory){
             filteredPost = filteredPost.filter((item) => item.category===this.props.filterCategory)
         }
@@ -63,9 +56,7 @@ class PostList extends Component {
                                     <p><button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/post/${post.id}`} >READ MORE »</Link></b></button></p>
                                 </div>
                                 <div className="w3-col m4 w3-hide-small">
-                                    <span className="w3-padding-large w3-right"><b>Votes  </b> <span className="w3-tag">{post.voteScore}</span></span>
-                                    <button type='button' onClick={()=> this.onVote(post.id,UP_VOTE_POST)} className="w3-button w3-padding-large w3-white w3-border"><b>up</b></button>
-                                    <button type='button' onClick={()=> this.onVote(post.id,DOWN_VOTE_POST)} className="w3-button w3-padding-large w3-white w3-border"><b>down</b></button>
+                                    <Votes enableChange='true' postId={post.id}  voteScore={post.voteScore}/>
                                 </div>
                             </div>
                         </div>

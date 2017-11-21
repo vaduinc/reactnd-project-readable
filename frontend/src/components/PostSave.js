@@ -4,6 +4,7 @@ import serializeForm from 'form-serialize'
 import { connect } from 'react-redux';
 import { withRouter , Link} from 'react-router-dom';
 import CategorySelect from './CategorySelect'
+import Votes from './Votes'
 
 
 class PostSave extends Component {
@@ -67,7 +68,7 @@ class PostSave extends Component {
                                 <button type="submit" className="w3-button w3-padding-large w3-white w3-border"><b>Save</b></button>
                             </div>
                             <div className="w3-col m4 w3-hide-small">
-                                <p><span className="w3-padding-large w3-right"><b>Votes  </b> <span className="w3-tag">0</span></span></p>
+                                <Votes enableChange={false} postId={currentPost?currentPost.id:0}  voteScore={currentPost?currentPost.voteScore:0}/>
                             </div>
                         </div>
                     </div>
