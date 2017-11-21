@@ -21,11 +21,11 @@ export function getPost(postId) {
 
 export function saveNewPosts(post) {
     const url = `${process.env.REACT_APP_BACKEND}/posts`;
-    console.log('saving post', url);
-    console.log(post);
+    console.log('saving post', url)
+    console.log(post)
     post.id = v4()
     post.timestamp = Date.now()
-    console.log('ABOUT TO MAKE REQUEST WITH');
+    console.log('ABOUT TO MAKE REQUEST WITH')
     console.log(post);
     
     return fetch(url, { 
@@ -35,7 +35,7 @@ export function saveNewPosts(post) {
                  body : JSON.stringify(post)             
                 })
       .then( (res) =>  res.json() )
-    }
+ }
   
 export function saveExistingPosts(post) {
         const url = `${process.env.REACT_APP_BACKEND}/posts/${post.id}`
@@ -48,4 +48,18 @@ export function saveExistingPosts(post) {
                      body : JSON.stringify(post)             
                     })
           .then( (res) =>  res.json() )
-        }    
+}
+
+export function saveVote(postId,voteType) {
+    const url = `${process.env.REACT_APP_BACKEND}/posts/${postId}`
+    console.log('saving post', url)
+    const body ={option : voteType}
+    
+    return fetch(url, { 
+                 method: 'POST',
+                 headers: { 'Authorization': 'whatever-you-want' , 'content-type': 'application/json'  },
+                 credentials: 'include' ,
+                 body : JSON.stringify(body)             
+                })
+      .then( (res) =>  res.json() )
+ }

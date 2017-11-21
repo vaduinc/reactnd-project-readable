@@ -13,7 +13,7 @@ function posts (state = [], action){
                 ...state,
                 posts: state.posts.concat(post)
             }
-        case EDIT_POST :
+        case EDIT_POST : case UP_VOTE_POST : case DOWN_VOTE_POST:
             const { updatedPost } = action
             console.log(state.posts)
             return {posts : state.posts.map( (item) => {
