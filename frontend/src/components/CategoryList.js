@@ -38,7 +38,7 @@ class CategoryList extends Component {
 
 }
 
-const mapStateToProps = ({ posts, categories }) => ({
+const mapStateToProps = ({ comments, posts, categories }) => ({
     categories
 })
 

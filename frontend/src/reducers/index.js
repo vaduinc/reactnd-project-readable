@@ -1,6 +1,22 @@
 import { combineReducers } from 'redux'
+import {RECEIVE_ALL_COMMENTS} from '../actions/commentActions'
 import {ADD_POST,EDIT_POST,REMOVE_POST,UP_VOTE_POST,DOWN_VOTE_POST,RECEIVE_ALL_POSTS} from '../actions/postActions'
 import {RECEIVE_ALL_CATEGORIES} from '../actions/categoryActions'
+
+function comments (state = [], action){
+    
+    switch (action.type){
+        case RECEIVE_ALL_COMMENTS :
+            const { comments } = action
+            console.log(comments)
+            return {
+                ...state,
+                comments: comments
+            }   
+        default :
+            return state    
+    }
+}
 
 
 function posts (state = [], action){
@@ -63,6 +79,7 @@ function categories (state = [], action){
 
 
 export default combineReducers({
+    comments,
     posts,
     categories
   });

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter , Link} from 'react-router-dom';
 import CategorySelect from './CategorySelect'
 import Votes from './Votes'
+import CommentList from './CommentList'
 
 class Post extends Component {
 
@@ -48,13 +49,17 @@ class Post extends Component {
                         </div>
                     </div>
                 </form>
+
+                <div>
+                    <CommentList postId={currentPost.id} />
+                </div>
             </div>
         )
     }
 
 }
 
-const mapStateToProps = ({ posts, categories }) => ({
+const mapStateToProps = ({ comments, posts, categories }) => ({
     posts
 })
  

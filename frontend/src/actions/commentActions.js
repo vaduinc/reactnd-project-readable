@@ -1,8 +1,24 @@
+import {getComments} from '../utils/commentApiUtil'
+
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT'
 export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT'
+export const RECEIVE_ALL_COMMENTS = 'RECEIVE_ALL_COMMENTS'
+
+export const receiveComments = (comments) => {
+    return {
+        type: RECEIVE_ALL_COMMENTS,
+        comments
+    }
+}
+
+export const fetchComments = (postId) => dispatch => (
+    getComments(postId)
+        .then(comments => dispatch(receiveComments(comments)))
+)
+
 
 export const addComment = (comment) => {
     return {
