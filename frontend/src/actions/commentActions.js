@@ -1,4 +1,4 @@
-import {getComments,saveNewComment,saveExistingComment,saveVote} from '../utils/commentApiUtil'
+import {getComments,saveNewComment,saveExistingComment,saveVote,eraseComment} from '../utils/commentApiUtil'
 
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
@@ -57,9 +57,14 @@ export const updateComment = (Comment) => dispatch => (
         .then(updatedComment => dispatch(editComment(updatedComment)))
 )
 
-export const removeComment = (id) => {
+export const removeComment = (updatedComment) => {
     return {
         type: REMOVE_COMMENT,
-        id
+        updatedComment
     }
 }
+
+export const deleteComment = (commentId) => dispatch => (
+    eraseComment(commentId)
+        .then(updatedComment => dispatch(removeComment(updatedComment)))
+)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link  } from 'react-router-dom'
-import {fetchComments} from '../actions/commentActions'
+import {fetchComments,deleteComment} from '../actions/commentActions'
 import Votes from './Votes'
 
 class CommentList extends Component {
@@ -26,12 +26,16 @@ class CommentList extends Component {
         }
     }
 
+    onDelete =(commentId) => {
+        this.props.deleteComment(commentId)
+    }
+
     render() {
 
         const { comments } = this.props.comments
 
         let filteredComment = comments || []
-        filteredComment.sort(this.dynamicSort('-voteScore'))
+        filteredComment = filteredComment.filter((item) => !item.deleted).sort(this.dynamicSort('-voteScore'))
 
         return (    
 
@@ -45,7 +49,8 @@ class CommentList extends Component {
                             <span className="w3-opacity">{(new Date(comment.timestamp)).toDateString()}</span>
                             <div className="w3-row">
                                 <div className="w3-col m7 ">
-                                    <p><button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/comment/${comment.id}`} >READ MORE »</Link></b></button></p>
+                                    <p><button type='button' onClick={()=> this.onDelete(comment.id)} className="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button>
+                                    <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/commentSave/edit/${comment.id}`} >Edit</Link></b></button></p>
                                 </div>
                                 <div className="w3-col m5 w3-hide-small">
                                     <Votes enableChange='true' id={comment.id}  voteScore={comment.voteScore} voteType='comment' />
@@ -65,4 +70,4 @@ const mapStateToProps = ({ comments, posts, categories }) => ({
     comments
 })
 
-export default connect(mapStateToProps,{fetchComments})(CommentList)
+export default connect(mapStateToProps,{fetchComments,deleteComment})(CommentList)

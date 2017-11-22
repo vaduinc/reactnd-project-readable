@@ -54,3 +54,16 @@ export function saveVote(commentId,voteType) {
                 })
       .then( (res) =>  res.json() )
  }
+
+ 
+ export function eraseComment(commentId) {
+    const url = `${process.env.REACT_APP_BACKEND}/comments/${commentId}`
+    console.log('erase vote comment', url)
+    
+    return fetch(url, { 
+                method: 'DELETE',
+                headers: { 'Authorization': 'whatever-you-want' , 'content-type': 'application/json'  },
+                credentials: 'include'            
+                })
+    .then( (res) =>  res.json() )
+}
