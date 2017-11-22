@@ -66,17 +66,17 @@ class App extends Component {
           <Route exact path='/' render={() => (
             <div className="w3-row">
                 
-                <div className="w3-col l6 s12">     
+                <div className="w3-col l12 s12">     
                     <div className="w3-card-4 w3-margin w3-white">
                         <div className="w3-container">
                             <div className="w3-row">
-                                <div className="w3-col m2 s12">
+                                <div className="w3-col m8 s12">
                                     <p className="open-search"><Link to="/postSave/add" >Add Post</Link></p>
                                 </div>
                                 <div className="w3-col m4 s12">
                                   <br/>
-                                  <button onClick={() => this.changeSort('voteScore')}  className="w3-button w3-padding-large w3-black w3-border"><b>By Votes</b></button>
-                                  <button onClick={() => this.changeSort('timestamp')}  className="w3-button w3-padding-large w3-black w3-border"><b>By Date</b></button>
+                                  <button onClick={() => this.changeSort('voteScore')}  className="w3-button w3-padding-large w3-black w3-border w3-right"><b>By Votes</b></button>
+                                  <button onClick={() => this.changeSort('timestamp')}  className="w3-button w3-padding-large w3-black w3-border w3-right"><b>By Date</b></button>
                                 </div>
                                 <div className="w3-col m6 w3-hide-small">
                                      {

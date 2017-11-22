@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter , Link} from 'react-router-dom';
-import CategorySelect from './CategorySelect'
 import Votes from './Votes'
 import CommentList from './CommentList'
+import CommentSave from './CommentSave'
 
 class Post extends Component {
 
@@ -40,16 +40,19 @@ class Post extends Component {
                         <div className="w3-row">
                             <div className="w3-col m8 s12">
                                 <br/>
-                                <button type='button' onClick={()=> this.onReturn(false)} className="w3-button w3-padding-large w3-white w3-border"><b>Cancel</b></button>
+                                <button type='button' onClick={()=> this.onReturn(false)} className="w3-button w3-padding-large w3-white w3-border"><b>Return</b></button>
                                 <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/postSave/edit/${currentPost.id}`} >Edit</Link></b></button>
                             </div>
                             <div className="w3-col m4 w3-hide-small">
-                                <Votes enableChange='true' postId={currentPost.id}  voteScore={currentPost.voteScore}/>
+                                <Votes enableChange='true' id={currentPost.id}  voteScore={currentPost.voteScore} voteType='post' />
                             </div>
                         </div>
                     </div>
                 </form>
 
+                <div>
+                    <CommentSave action={'add'} postId={currentPost.id} />
+                </div>
                 <div>
                     <CommentList postId={currentPost.id} />
                 </div>

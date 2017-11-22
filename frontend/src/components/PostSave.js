@@ -64,7 +64,7 @@ class PostSave extends Component {
                         <div className="w3-row">
                             <div className="w3-col m8 s12">
                                 <br/>
-                                <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={action==='add'?'/':`/post/${postId}`} >Cancel</Link></b></button>
+                                <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={action==='add'?'/':`/post/${postId}`} >Return</Link></b></button>
                                 <button type="submit" className="w3-button w3-padding-large w3-white w3-border"><b>Save</b></button>
                             </div>
                             <div className="w3-col m4 w3-hide-small">

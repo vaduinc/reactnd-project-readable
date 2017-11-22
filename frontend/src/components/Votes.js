@@ -1,18 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {sendVote,UP_VOTE_POST,DOWN_VOTE_POST} from '../actions/postActions'
+import {sendVoteComment,UP_VOTE_COMMENT,DOWN_VOTE_COMMENT} from '../actions/commentActions'
 
 class Votes extends Component {
 
-    onVote = (postId,type) => {
-        console.log(`This id ${postId} type ${type}`)
-        this.props.sendVote(postId,type)
+    onVote = (id,type,voteType) => {
+        console.log(`This id ${id} type ${type} -- vote type ${voteType}`)
+        if (voteType==='post'){
+            this.props.sendVote(id,type==='UP'?UP_VOTE_POST:DOWN_VOTE_POST)
+        } else if (voteType==='comment'){ 
+            this.props.sendVoteComment(id,type==='UP'?UP_VOTE_COMMENT:DOWN_VOTE_COMMENT)
+        }
     }
 
 
     render() {
 
-        const { postId,voteScore, enableChange } = this.props
+        const { id,voteScore, enableChange, voteType } = this.props
 
         return (    
             <div>
@@ -20,8 +25,8 @@ class Votes extends Component {
                 {
                     enableChange && (
                      <p>    
-                        <button type='button' onClick={()=> this.onVote(postId,UP_VOTE_POST)} className="w3-button w3-padding-large w3-white w3-border"><b>up</b></button>
-                        <button type='button' onClick={()=> this.onVote(postId,DOWN_VOTE_POST)} className="w3-button w3-padding-large w3-white w3-border"><b>down</b></button>
+                        <button type='button' onClick={()=> this.onVote(id,'UP',voteType)} className="w3-button w3-padding-large w3-white w3-border w3-right"><b>up</b></button>
+                        <button type='button' onClick={()=> this.onVote(id,'DOWN',voteType)} className="w3-button w3-padding-large w3-white w3-border w3-right"><b>down</b></button>
                     </p>
                     )
                 }
@@ -31,4 +36,4 @@ class Votes extends Component {
 
 }
 
-export default connect(null,{sendVote})(Votes)
+export default connect(null,{sendVote,sendVoteComment})(Votes)

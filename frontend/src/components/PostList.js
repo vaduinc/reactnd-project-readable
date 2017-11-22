@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link  } from 'react-router-dom'
-import {fetchPosts,sendVote,UP_VOTE_POST,DOWN_VOTE_POST} from '../actions/postActions'
+import {fetchPosts,sendVote} from '../actions/postActions'
 import Votes from './Votes'
 
 class PostList extends Component {
@@ -39,7 +39,7 @@ class PostList extends Component {
 
         return (    
 
-            <div className="w3-col l6 s12">     
+            <div className="w3-col l10 s9">     
                 
                 { 
                     filteredPost.map( (post) => (
@@ -52,11 +52,11 @@ class PostList extends Component {
                         <div className="w3-container">
                             <p>{post.body}</p>
                             <div className="w3-row">
-                                <div className="w3-col m8 s12">
+                                <div className="w3-col m5 s9">
                                     <p><button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/post/${post.id}`} >READ MORE »</Link></b></button></p>
                                 </div>
-                                <div className="w3-col m4 w3-hide-small">
-                                    <Votes enableChange='true' postId={post.id}  voteScore={post.voteScore}/>
+                                <div className="w3-col m7 w3-hide-small">
+                                    <Votes enableChange='true' id={post.id}  voteScore={post.voteScore} voteType='post' />
                                 </div>
                             </div>
                         </div>

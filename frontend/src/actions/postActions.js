@@ -62,17 +62,3 @@ export const removePost = (id) => {
         id
     }
 }
-
-export const upVotePost = (id) => {
-    return {
-        type: UP_VOTE_POST,
-        id
-    }
-}
-
-export const downVotePost = (id) => {
-    return {
-        type: DOWN_VOTE_POST,
-        id
-    }
-}
