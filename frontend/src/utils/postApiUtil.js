@@ -63,3 +63,15 @@ export function saveVote(postId,voteType) {
                 })
       .then( (res) =>  res.json() )
  }
+
+export function erasePost(postId) {
+    const url = `${process.env.REACT_APP_BACKEND}/posts/${postId}`
+    console.log('erase post', url)
+    
+    return fetch(url, { 
+                method: 'DELETE',
+                headers: { 'Authorization': 'whatever-you-want' , 'content-type': 'application/json'  },
+                credentials: 'include'            
+                })
+    .then( (res) =>  res.json() )
+}

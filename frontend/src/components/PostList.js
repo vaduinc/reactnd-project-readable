@@ -46,14 +46,14 @@ class PostList extends Component {
                     <div key={post.id} className="w3-card-4 w3-margin w3-white">
                         <div className="w3-container">
                             <h3><b>{post.title}</b> ({post.category})</h3>
-                            <h5>{post.author}, <span className="w3-opacity">{(new Date(post.timestamp)).toDateString()}</span></h5>
+                            <h5>{post.author}, <span className="w3-opacity">{(new Date(post.timestamp)).toDateString()}</span> - {post.commentCount} comments</h5>
                         </div>
 
                         <div className="w3-container">
                             <p>{post.body}</p>
                             <div className="w3-row">
                                 <div className="w3-col m5 s9">
-                                    <p><button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/post/${post.id}`} >READ MORE »</Link></b></button></p>
+                                    <p><button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/post/${post.id}`} >... more</Link></b></button></p>
                                 </div>
                                 <div className="w3-col m7 w3-hide-small">
                                     <Votes enableChange='true' id={post.id}  voteScore={post.voteScore} voteType='post' />

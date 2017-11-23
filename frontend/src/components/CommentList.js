@@ -43,14 +43,16 @@ class CommentList extends Component {
                 
                 { 
                     filteredComment.map( (comment) => (
-                    <div key={comment.id} className="w3-card-4 w3-margin w3-light-grey">
+                    <div key={comment.id} className="w3-card-4 w3-margin w3-black">
                         <div className="w3-container">
+                            <span className="w3-opacity">{comment.author}, {(new Date(comment.timestamp)).toDateString()}</span>
                             <p>{comment.body}</p>
-                            <span className="w3-opacity">{(new Date(comment.timestamp)).toDateString()}</span>
                             <div className="w3-row">
                                 <div className="w3-col m7 ">
-                                    <p><button type='button' onClick={()=> this.onDelete(comment.id)} className="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button>
-                                    <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/commentSave/edit/${comment.id}`} >Edit</Link></b></button></p>
+                                    <p>
+                                        <button type='button' onClick={()=> this.onDelete(comment.id)} className="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button>
+                                        <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/commentSave/edit/${comment.id}`} >Edit</Link></b></button>
+                                    </p>
                                 </div>
                                 <div className="w3-col m5 w3-hide-small">
                                     <Votes enableChange='true' id={comment.id}  voteScore={comment.voteScore} voteType='comment' />

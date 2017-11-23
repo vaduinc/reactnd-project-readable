@@ -21,7 +21,7 @@ class CategoryList extends Component {
                         <h4>Categories</h4>
                     </div>
                     <hr/>
-                    <ul className="w3-ul w3-hoverable w3-light-grey">
+                    <ul className="w3-ul w3-hoverable">
                         { categories && (
                             categories.map( (category) => (
                                 <li key={category.name} onClick={() => this.props.onChangeCategory(category.name) } className="w3-padding-16">

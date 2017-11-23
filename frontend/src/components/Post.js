@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { withRouter , Link} from 'react-router-dom';
+import { withRouter , Link} from 'react-router-dom'
 import Votes from './Votes'
 import CommentList from './CommentList'
 import CommentSave from './CommentSave'
+import {deletePost} from '../actions/postActions'
 
 class Post extends Component {
 
@@ -12,12 +13,18 @@ class Post extends Component {
         this.props.onSavedPost(didChange)
     }
 
+    onDelete =(postId) => {
+        this.props.deletePost(postId)
+        this.onReturn(true)
+    }
+
     render() {
 
         const { postId } = this.props.match.params
         const { posts } = this.props.posts
+        console.log(this.props.nuevoParam)
         
-        let currentPost = posts.filter( (item) => item.id===postId)[0]
+        let currentPost = posts.filter( (item) => item.id===postId && !item.delete)[0]
                
         return (    
             <div className="w3-card-4 w3-margin w3-white">
@@ -32,7 +39,7 @@ class Post extends Component {
                                 <b>{currentPost.category}</b>
                             </div>          
                         </div>            
-                        <h5>{currentPost.author}, <span className="w3-opacity">{(new Date(currentPost.timestamp)).toDateString()}</span></h5>
+                        <h5>{currentPost.author}, <span className="w3-opacity">{(new Date(currentPost.timestamp)).toDateString()}</span> - {currentPost.commentCount} comments</h5>
                     </div>
 
                     <div className="w3-container">
@@ -41,6 +48,7 @@ class Post extends Component {
                             <div className="w3-col m8 s12">
                                 <p>
                                     <button type='button' onClick={()=> this.onReturn(false)} className="w3-button w3-padding-large w3-white w3-border"><b>Return</b></button>
+                                    <button type='button' onClick={()=> this.onDelete(currentPost.id)} className="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button>
                                     <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/postSave/edit/${currentPost.id}`} >Edit</Link></b></button>
                                 </p>
                             </div>
@@ -67,4 +75,4 @@ const mapStateToProps = ({ comments, posts, categories }) => ({
     posts
 })
  
-export default withRouter(connect(mapStateToProps)(Post))
+export default withRouter(connect(mapStateToProps,{deletePost})(Post))

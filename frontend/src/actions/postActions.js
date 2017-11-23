@@ -1,4 +1,4 @@
-import {saveVote, getPosts,getPost,saveNewPosts,saveExistingPosts} from '../utils/postApiUtil'
+import {saveVote, getPosts,getPost,saveNewPosts,saveExistingPosts,erasePost} from '../utils/postApiUtil'
 
 export const ADD_POST = 'ADD_POST'
 export const EDIT_POST = 'EDIT_POST'
@@ -56,9 +56,14 @@ export const updatePost = (post) => dispatch => (
         .then(updatedPost => dispatch(editPost(updatedPost)))
 )
 
-export const removePost = (id) => {
+export const removePost = (updatedPost) => {
     return {
         type: REMOVE_POST,
-        id
+        updatedPost
     }
 }
+
+export const deletePost = (postId) => dispatch => (
+    erasePost(postId)
+        .then(updatedPost => dispatch(removePost(updatedPost)))
+)

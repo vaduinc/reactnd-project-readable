@@ -8,7 +8,7 @@ class CategorySelect extends Component {
         const { categories } = this.props.categories
 
         return (    
-            <select name='category'>
+            <select name='category' className='w3-select' >
                 { categories && (
                     categories.map( (category) => (
                         <option key={category.name} value={category.name}>{category.name}</option>

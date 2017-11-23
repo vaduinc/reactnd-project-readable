@@ -58,7 +58,7 @@ export function saveVote(commentId,voteType) {
  
  export function eraseComment(commentId) {
     const url = `${process.env.REACT_APP_BACKEND}/comments/${commentId}`
-    console.log('erase vote comment', url)
+    console.log('erase comment', url)
     
     return fetch(url, { 
                 method: 'DELETE',

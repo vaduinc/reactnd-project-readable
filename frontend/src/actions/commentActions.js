@@ -45,10 +45,10 @@ export const saveComment = (newComment) => dispatch => (
         .then(comment => dispatch(addComment(comment)))
 )
 
-export const editComment = (comment) => {
+export const editComment = (updatedComment) => {
     return {
         type: EDIT_COMMENT,
-        comment
+        updatedComment
     }
 }
 
