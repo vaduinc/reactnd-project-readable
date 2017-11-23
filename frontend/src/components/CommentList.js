@@ -49,9 +49,11 @@ class CommentList extends Component {
                             <p>{comment.body}</p>
                             <div className="w3-row">
                                 <div className="w3-col m7 ">
-                                    <p>
+                                    <p className="delete-button">
                                         <button type='button' onClick={()=> this.onDelete(comment.id)} className="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button>
-                                        <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/commentSave/edit/${comment.id}`} >Edit</Link></b></button>
+                                    </p>
+                                    <p className='edit-link'>
+                                        <Link to={`/commentSave/edit/${comment.id}`} >Edit</Link>
                                     </p>
                                 </div>
                                 <div className="w3-col m5 w3-hide-small">

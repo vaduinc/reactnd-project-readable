@@ -217,13 +217,135 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   right: 25px;
   bottom: 25px;
 } */
-.open-search a {
+.more-link a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: black;
+  background-image: url('./icons/add.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.new-link a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('./icons/new-commercial-label.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 62px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.vote-up button{
   display: block;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background: #0B0A0B;
-  background-image: url('./icons/add.svg');
+  background-image: url('./icons/thumb-up.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.vote-down button{
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #0B0A0B;
+  background-image: url('./icons/dislike-thumb.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.save button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #0B0A0B;
+  background-image: url('./icons/diskette.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.edit-link a{
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('./icons/pencil.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.return-link a{
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('./icons/rewind-to-beginning-with-left-arrow.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.delete-button button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('./icons/recycling-bin.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.clear-button button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('./icons/wiping-sprayer-tool.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.funnel-button button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: light-grey;
+  background-image: url('./icons/funnel.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 28px;

@@ -46,11 +46,15 @@ class Post extends Component {
                         <p>{currentPost.body}</p>
                         <div className="w3-row">
                             <div className="w3-col m8 s12">
-                                <p>
-                                    <button type='button' onClick={()=> this.onReturn(false)} className="w3-button w3-padding-large w3-white w3-border"><b>Return</b></button>
-                                    <button type='button' onClick={()=> this.onDelete(currentPost.id)} className="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button>
-                                    <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/postSave/edit/${currentPost.id}`} >Edit</Link></b></button>
-                                </p>
+                                    <p className="return-link">
+                                        <Link to={'/'} >Edit</Link>
+                                    </p>    
+                                    <p className="delete-button">
+                                        <button type='button' onClick={()=> this.onDelete(currentPost.id)} className="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button>
+                                    </p>
+                                    <p className='edit-link'>
+                                        <Link to={`/postSave/edit/${currentPost.id}`} >Edit</Link>
+                                    </p>
                             </div>
                             <div className="w3-col m4 w3-hide-small">
                                 <Votes enableChange='true' id={currentPost.id}  voteScore={currentPost.voteScore} voteType='post' />

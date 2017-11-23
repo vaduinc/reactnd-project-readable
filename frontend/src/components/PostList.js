@@ -53,7 +53,7 @@ class PostList extends Component {
                             <p>{post.body}</p>
                             <div className="w3-row">
                                 <div className="w3-col m5 s9">
-                                    <p><button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/post/${post.id}`} >... more</Link></b></button></p>
+                                    <p className="more-link"><Link to={`/post/${post.id}`} >... more</Link></p>
                                 </div>
                                 <div className="w3-col m7 w3-hide-small">
                                     <Votes enableChange='true' id={post.id}  voteScore={post.voteScore} voteType='post' />

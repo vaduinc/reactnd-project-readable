@@ -55,7 +55,7 @@ class App extends Component {
                         <div className="w3-container">
                             <div className="w3-row">
                                 <div className="w3-col m2 s12">
-                                    <p className="open-search"><Link to="/postSave/add" >Add Post</Link></p>
+                                    <p className="new-link"><Link to="/postSave/add" >Add Post</Link></p>
                                 </div>
                                 <div className="w3-col m4 s12">
                                   <br/>
@@ -77,8 +77,8 @@ class App extends Component {
                     </div>
                 </div>   
 
-                <PostList sorted={this.state.sortBy} filterCategory={this.state.selectedCategory}/>
                 <CategoryList onChangeCategory={this.changeCategory} />
+                <PostList sorted={this.state.sortBy} filterCategory={this.state.selectedCategory}/>
             </div>
           )}/>  
           <Route path='/post/:postId?' render={({ history }) => (

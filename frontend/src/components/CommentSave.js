@@ -52,11 +52,9 @@ class CommentSave extends Component {
                             </div>   
                             <div className="w3-row">
                                 <div className="w3-col m7 s12">
-                                    <p>
-                                        {currentComment && (<button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={`/post/${currentComment.parentId}`} >Return</Link></b></button>)}
-                                        {!currentComment && (<button type="button" className="w3-button w3-padding-large w3-white w3-border" onClick={this.cleanForm.bind(this)} ><b>Clear</b></button>)}
-                                        <button type="submit" className="w3-button w3-padding-large w3-white w3-border"><b>Save</b></button>
-                                    </p>    
+                                    {currentComment && (<p className="return-link"><Link to={`/post/${currentComment.parentId}`} >Return</Link></p>)}
+                                    {!currentComment && (<p className='clear-button'><button type="button" className="w3-button w3-padding-large w3-white w3-border" onClick={this.cleanForm.bind(this)} ><b>Clear</b></button></p>)}
+                                    <p className='save'><button type="submit" className="w3-button w3-padding-large w3-white w3-border"><b>Save</b></button></p>    
                                 </div>
                                 <div className="w3-col m5 w3-hide-small">
                                     {currentComment && (<Votes enableChange={false} id={currentComment.id}  voteScore={currentComment.voteScore} voteType='comment' />)}

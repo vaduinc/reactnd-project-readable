@@ -62,12 +62,15 @@ class PostSave extends Component {
                     <div className="w3-container">
                         <textarea name="body" defaultValue={currentPost?currentPost.body:''}  placeholder='body content' className="w3-simple-input" />
                         <div className="w3-row">
-                            <div className="w3-col m8 s12">
-                                <br/>
-                                <button className="w3-button w3-padding-large w3-white w3-border"><b><Link to={action==='add'?'/':`/post/${postId}`} >Return</Link></b></button>
-                                <button type="submit" className="w3-button w3-padding-large w3-white w3-border"><b>Save</b></button>
+                            <div className="w3-col m7 s12">
+                                <p className="return-link">
+                                    <Link to={action==='add'?'/':`/post/${postId}`} >Return</Link>
+                                </p>
+                                <p className="save">    
+                                    <button type="submit" className="w3-button w3-padding-large w3-white w3-border">Save</button>
+                                </p>
                             </div>
-                            <div className="w3-col m4 w3-hide-small">
+                            <div className="w3-col m5 w3-hide-small">
                                 <Votes enableChange={false} postId={currentPost?currentPost.id:0}  voteScore={currentPost?currentPost.voteScore:0}/>
                             </div>
                         </div>

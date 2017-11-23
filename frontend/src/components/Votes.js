@@ -24,10 +24,14 @@ class Votes extends Component {
                 <span className="w3-padding-large w3-right"><b>Votes  </b> <span className="w3-tag">{voteScore}</span></span>
                 {
                     enableChange && (
-                     <p>    
-                        <button type='button' onClick={()=> this.onVote(id,'UP',voteType)} className="w3-button w3-padding-large w3-white w3-border w3-right"><b>up</b></button>
-                        <button type='button' onClick={()=> this.onVote(id,'DOWN',voteType)} className="w3-button w3-padding-large w3-white w3-border w3-right"><b>down</b></button>
-                    </p>
+                        <div>     
+                            <p className="vote-up"> 
+                                <button type='button' onClick={()=> this.onVote(id,'UP',voteType)} className="w3-button w3-padding-large w3-white w3-border w3-right"><b>up</b></button>
+                            </p>
+                            <p className="vote-down">
+                                <button type='button' onClick={()=> this.onVote(id,'DOWN',voteType)} className="w3-button w3-padding-large w3-white w3-border w3-right"><b>down</b></button>
+                            </p>
+                        </div>
                     )
                 }
             </div>
