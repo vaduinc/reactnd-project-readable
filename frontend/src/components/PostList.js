@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link  } from 'react-router-dom'
 import {fetchPosts,sendVote} from '../actions/postActions'
 import Votes from './Votes'
+import {dynamicSort} from '../utils/sortUtil'
 
 class PostList extends Component {
 
@@ -10,32 +11,16 @@ class PostList extends Component {
         this.props.fetchPosts()
     }
 
-    /**
-     * https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
-     * @param {*} property 
-     */
-    dynamicSort(property) {
-        var sortOrder = 1;
-        if(property[0] === "-") {
-            sortOrder = -1;
-            property = property.substr(1);
-        }
-        return function (a,b) {
-            var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-            return result * sortOrder;
-        }
-    }
-
     render() {
 
-        const { posts } = this.props.posts
+        const { dataCollection } = this.props.posts
 
-        let filteredPost = posts || []
+        let filteredPost = dataCollection || []
         if (this.props.filterCategory){
             filteredPost = filteredPost.filter((item) => item.category===this.props.filterCategory)
         }
 
-        filteredPost.sort(this.dynamicSort(this.props.sorted))
+        filteredPost.sort(dynamicSort(this.props.sorted))
 
         return (    
 

@@ -6,7 +6,6 @@ import {sendVoteComment,UP_VOTE_COMMENT,DOWN_VOTE_COMMENT} from '../actions/comm
 class Votes extends Component {
 
     onVote = (id,type,voteType) => {
-        console.log(`This id ${id} type ${type} -- vote type ${voteType}`)
         if (voteType==='post'){
             this.props.sendVote(id,type==='UP'?UP_VOTE_POST:DOWN_VOTE_POST)
         } else if (voteType==='comment'){ 

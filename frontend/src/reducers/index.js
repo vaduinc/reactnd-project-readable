@@ -8,15 +8,13 @@ function comments (state = [], action){
     switch (action.type){
         case ADD_COMMENT :
             const { comment } = action
-            console.log(comment)
             return {
                 ...state,
-                comments: state.comments.concat(comment)
+                dataCollection: state.dataCollection.concat(comment)
             }
         case EDIT_COMMENT : case UP_VOTE_COMMENT : case DOWN_VOTE_COMMENT: case REMOVE_COMMENT:
             const { updatedComment } = action
-            console.log(state.comments)
-            return {comments : state.comments.map( (item) => {
+            return {dataCollection : state.dataCollection.map( (item) => {
                             if (item.id !== updatedComment.id){
                                 return item;
                             }
@@ -28,10 +26,9 @@ function comments (state = [], action){
                     }    
         case RECEIVE_ALL_COMMENTS :
             const { comments } = action
-            console.log(comments)
             return {
                 ...state,
-                comments: comments
+                dataCollection: comments
             }   
         default :
             return state    
@@ -44,15 +41,13 @@ function posts (state = [], action){
     switch (action.type){
         case ADD_POST :
             const { post } = action
-            console.log(post)
             return {
                 ...state,
-                posts: state.posts.concat(post)
+                dataCollection: state.dataCollection.concat(post)
             }
         case EDIT_POST : case UP_VOTE_POST : case DOWN_VOTE_POST: case REMOVE_POST:
             const { updatedPost } = action
-            console.log(state.posts)
-            return {posts : state.posts.map( (item) => {
+            return {dataCollection : state.dataCollection.map( (item) => {
                             if (item.id !== updatedPost.id){
                                 return item;
                             }
@@ -64,18 +59,10 @@ function posts (state = [], action){
                     }
         case RECEIVE_ALL_POSTS :
             const { posts } = action
-            console.log(posts)
             return {
                 ...state,
-                posts: posts
-            }   
-        // case RECEIVE_POST :
-        //     const { editPost } = action
-        //     console.log(editPost)
-        //     return {
-        //         ...state,
-        //         post: editPost
-        //     }      
+                dataCollection: posts
+            }      
         default :
             return state    
     }
@@ -87,10 +74,9 @@ function categories (state = [], action){
     switch (action.type){
         case RECEIVE_ALL_CATEGORIES :
             const { categories } = action
-            console.log(categories)
             return {
                 ...state,
-                categories: categories
+                dataCollection: categories
             }
         default :
             return state    

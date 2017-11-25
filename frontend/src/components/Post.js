@@ -8,22 +8,21 @@ import {deletePost} from '../actions/postActions'
 
 class Post extends Component {
 
-    onReturn = (didChange) => {
-        console.log(didChange)
-        this.props.onSavedPost(didChange)
+    onReturn = () => {
+        this.props.onSavedPost()
     }
 
     onDelete =(postId) => {
         this.props.deletePost(postId)
-        this.onReturn(true)
+        this.onReturn()
     }
 
     render() {
 
         const { postId } = this.props.match.params
-        const { posts } = this.props.posts
+        const { dataCollection } = this.props.posts
         
-        let currentPost = posts?posts.filter( (item) => item.id===postId && !item.delete)[0]:{}
+        let currentPost = dataCollection?dataCollection.filter( (item) => item.id===postId && !item.delete)[0]:{}
                
         return (    
             <div className="w3-card-4 w3-margin w3-white">

@@ -5,12 +5,12 @@ class CategorySelect extends Component {
 
     render() {
 
-        const { categories } = this.props.categories
+        const { dataCollection } = this.props.categories
 
         return (    
             <select name='category' className='w3-select' >
-                { categories && (
-                    categories.map( (category) => (
+                { dataCollection && (
+                    dataCollection.map( (category) => (
                         <option key={category.name} value={category.name}>{category.name}</option>
                     ))
                 )}    

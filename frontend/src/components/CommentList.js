@@ -3,27 +3,12 @@ import { connect } from 'react-redux'
 import { Link  } from 'react-router-dom'
 import {fetchComments,deleteComment} from '../actions/commentActions'
 import Votes from './Votes'
+import {dynamicSort} from '../utils/sortUtil'
 
 class CommentList extends Component {
 
     componentDidMount() {
         this.props.fetchComments(this.props.postId)
-    }
-
-    /**
-     * https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
-     * @param {*} property 
-     */
-    dynamicSort(property) {
-        var sortOrder = 1;
-        if(property[0] === "-") {
-            sortOrder = -1;
-            property = property.substr(1);
-        }
-        return function (a,b) {
-            var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-            return result * sortOrder;
-        }
     }
 
     onDelete =(commentId) => {
@@ -32,10 +17,10 @@ class CommentList extends Component {
 
     render() {
 
-        const { comments } = this.props.comments
+        const { dataCollection } = this.props.comments
 
-        let filteredComment = comments || []
-        filteredComment = filteredComment.filter((item) => !item.deleted).sort(this.dynamicSort('-voteScore'))
+        let filteredComment = dataCollection || []
+        filteredComment = filteredComment.filter((item) => !item.deleted).sort(dynamicSort('-voteScore'))
 
         return (    
 

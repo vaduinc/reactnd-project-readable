@@ -10,7 +10,6 @@ class CommentSave extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const values = serializeForm(e.target, { hash: true })
-        console.log(this.props.action)
         if (this.props.action==='add'){
             values.parentId = this.props.postId
             this.props.saveComment(values)
@@ -28,12 +27,12 @@ class CommentSave extends Component {
 
     render() {
 
-        const { action, postId, commentId } = this.props
-        const { comments } = this.props.comments
+        const { action, commentId } = this.props
+        const { dataCollection } = this.props.comments
 
         let currentComment 
         if (action==='edit'){
-           currentComment = comments.filter( (item) => item.id===commentId)[0]
+           currentComment = dataCollection.filter( (item) => item.id===commentId)[0]
         } 
         
         return (    

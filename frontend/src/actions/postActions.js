@@ -1,4 +1,4 @@
-import {saveVote, getPosts,getPost,saveNewPosts,saveExistingPosts,erasePost} from '../utils/postApiUtil'
+import {saveVote, getPosts,saveNewPosts,saveExistingPosts,erasePost} from '../utils/postApiUtil'
 
 export const ADD_POST = 'ADD_POST'
 export const EDIT_POST = 'EDIT_POST'

@@ -10,7 +10,7 @@ class CategoryList extends Component {
 
     render() {
 
-        const { categories } = this.props.categories
+        const { dataCollection } = this.props.categories
         
         return (    
             <div className="w3-col l2 ">
@@ -21,8 +21,8 @@ class CategoryList extends Component {
                     </div>
                     <hr/>
                     <ul className="w3-ul w3-hoverable">
-                        { categories && (
-                            categories.map( (category) => (
+                        { dataCollection && (
+                            dataCollection.map( (category) => (
                                 <li key={category.name} onClick={() => this.props.onChangeCategory(category.name) } className="w3-padding-16">
                                     <span className="w3-large">{category.name}</span>
                                 </li>

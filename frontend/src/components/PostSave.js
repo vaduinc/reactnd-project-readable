@@ -25,18 +25,14 @@ class PostSave extends Component {
         this.props.history.push(`/postSave/edit/${id}`)
       }
 
-    onReturn = (didChange) => {
-        console.log(didChange)
-    }
-
+    
     render() {
-
         const { action, postId } = this.props.match.params
-        const { posts } = this.props.posts
+        const { dataCollection } = this.props.posts
 
         let currentPost 
         if (action==='edit'){
-           currentPost = posts.filter( (item) => item.id===postId)[0]
+           currentPost = dataCollection.filter( (item) => item.id===postId)[0]
         } 
         
         return (    
