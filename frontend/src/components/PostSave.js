@@ -10,11 +10,8 @@ import Votes from './Votes'
 class PostSave extends Component {
 
     handleSubmit = (e) => {
-        //console.log(e)
         e.preventDefault()
         const values = serializeForm(e.target, { hash: true })
-        // console.log(this.props.match.params.action)
-        // console.log(values)
         if (this.props.match.params.action==='add'){
             this.props.savePost(values)
                 .then( () => this.goPostEdit(values.id))
@@ -25,13 +22,11 @@ class PostSave extends Component {
     }
 
     goPostEdit(id) {
-        //console.log('THIS IS AN ID ' + id)
         this.props.history.push(`/postSave/edit/${id}`)
       }
 
     onReturn = (didChange) => {
         console.log(didChange)
-        //this.props.onSavedPost(didChange)
     }
 
     render() {
@@ -49,28 +44,33 @@ class PostSave extends Component {
                 <form onSubmit={this.handleSubmit} >
                     <div className="w3-container">
                         <div className="w3-row">
-                            <div className="w3-col m8 s12"> - {postId} -
-                                <input name="title" type='text' defaultValue={currentPost?currentPost.title:''} placeholder='post title' className="w3-simple-input" />
-                            </div> 
                             <div className="w3-col m4 s12">
+                                <input name="title" type='text' defaultValue={currentPost?currentPost.title:''} placeholder='post title' className="w3-input" />
+                            </div> 
+                            <div className="w3-col m4 ">
+                                <input name="author" type='text' defaultValue={currentPost?currentPost.author:''} placeholder='author' className="w3-input" />
+                            </div>     
+                            <div className="w3-col m4 ">
                                 <CategorySelect />
                             </div>          
-                        </div>            
-                        <input name="author" type='text' defaultValue={currentPost?currentPost.author:''} placeholder='author' className="w3-simple-input" />
-                    </div>
-
-                    <div className="w3-container">
-                        <textarea name="body" defaultValue={currentPost?currentPost.body:''}  placeholder='body content' className="w3-simple-input" />
+                        </div>  
+                        <div className="w3-row">  
+                            <div className="w3-col m12 s12">
+                                <textarea name="body" defaultValue={currentPost?currentPost.body:''}  placeholder='body content' className="w3-input" />
+                            </div>    
+                        </div>
                         <div className="w3-row">
-                            <div className="w3-col m7 s12">
+                            <div className="w3-col m1 s12">
                                 <p className="return-link">
                                     <Link to={action==='add'?'/':`/post/${postId}`} >Return</Link>
                                 </p>
-                                <p className="save">    
+                            </div>
+                            <div className="w3-col m1">
+                                <p className="save-button">    
                                     <button type="submit" className="w3-button w3-padding-large w3-white w3-border">Save</button>
                                 </p>
                             </div>
-                            <div className="w3-col m5 w3-hide-small">
+                            <div className="w3-col m10 w3-hide-small">
                                 <Votes enableChange={false} postId={currentPost?currentPost.id:0}  voteScore={currentPost?currentPost.voteScore:0}/>
                             </div>
                         </div>

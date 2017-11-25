@@ -273,11 +273,12 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   font-size: 0;
 }
 
-.save button{
+.save-button button{
+  display: block;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #0B0A0B;
+  background: white;
   background-image: url('./icons/diskette.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -341,11 +342,40 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 }
 
 .funnel-button button{
+  display: block;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background: light-grey;
   background-image: url('./icons/funnel.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.vote-sort-button a{
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('./icons/closed-fist-hand-gesture.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
+.calendar-sort-button a{
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('./icons/calendar.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 28px;

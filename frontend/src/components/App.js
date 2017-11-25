@@ -48,38 +48,31 @@ class App extends Component {
           <Header /> 
 
           <Route exact path='/' render={() => (
-            <div className="w3-row">
-                
-                <div className="w3-col l12 s12">     
-                    <div className="w3-card-4 w3-margin w3-white">
-                        <div className="w3-container">
-                            <div className="w3-row">
-                                <div className="w3-col m2 s12">
-                                    <p className="new-link"><Link to="/postSave/add" >Add Post</Link></p>
-                                </div>
-                                <div className="w3-col m4 s12">
-                                  <br/>
-                                  <button onClick={() => this.changeSort('voteScore')}  className="w3-button w3-padding-large w3-black w3-border"><b>By Votes</b></button>
-                                  <button onClick={() => this.changeSort('timestamp')}  className="w3-button w3-padding-large w3-black w3-border"><b>By Date</b></button>
-                                </div>
-                                <div className="w3-col m6 w3-hide-small w3-right">
-                                     {
-                                        this.state.selectedCategory && (
-                                          <div className='showing-contacts' > 
-                                              <span>Now filtering by category "{this.state.selectedCategory}" </span>
-                                              <button onClick={()=>this.changeCategory()}>remove filter</button>
-                                          </div>
-                                        )
-                                      }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>   
-
+              <div className="w3-card-4 w3-margin w3-white">
+                  <div className="w3-container">
+                      <div className="w3-row">
+                          <div className="w3-col m2 s12">
+                              <p className="new-link"><Link to="/postSave/add" >Add Post</Link></p>
+                          </div>
+                          <div className="w3-col m8 w3-hide-small">
+                                {
+                                  this.state.selectedCategory && (
+                                    <h3>Filtered by category "{this.state.selectedCategory}". <a className='w3-grey' onClick={()=>this.changeCategory()}>click to remove filter</a></h3>
+                                  )
+                                }
+                          </div>
+                          <div className="w3-col m1 w3-right" >
+                              <p className="vote-sort-button"><a className="w3-button w3-padding-large w3-white w3-border" onClick={() => this.changeSort('voteScore')}>votes</a></p>
+                          </div>
+                          <div className="w3-col m1 w3-right">
+                              <p className="calendar-sort-button"><a className="w3-button w3-padding-large w3-white w3-border" onClick={() => this.changeSort('timestamp')}>date</a></p>
+                          </div>
+                      </div>
+                  </div>
+                  
                 <CategoryList onChangeCategory={this.changeCategory} />
                 <PostList sorted={this.state.sortBy} filterCategory={this.state.selectedCategory}/>
-            </div>
+              </div>
           )}/>  
           <Route path='/post/:postId?' render={({ history }) => (
             <Post 
