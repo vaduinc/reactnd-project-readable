@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import '../App.css'
+import CategorySelect from './CategorySelect'
 
 class ToolBar extends Component {
 
@@ -8,13 +8,16 @@ class ToolBar extends Component {
     return (
           <div className="w3-container">
               <div className="w3-row">
-                  <div className="w3-col m2 s12">
+                  <div className="w3-col m1 s12">
                       <p className="new-link"><Link to="/postSave/add" >Add Post</Link></p>
                   </div>
-                  <div className="w3-col m8 w3-hide-small">
+                  <div className="w3-col m1 w3-padding-16">
+                      <CategorySelect selectedCategory={this.props.selectedCategory} addEmpty={true} changeCategory={this.props.changeCategory} />
+                  </div>
+                  <div className="w3-col m6 w3-hide-small">
                         {
                           this.props.selectedCategory && (
-                            <h3>Filtered by category "{this.props.selectedCategory}". <a className='w3-grey' onClick={()=>this.props.changeCategory()}>click to remove filter</a></h3>
+                            <h3>Filtered by category "{this.props.selectedCategory}".</h3>
                           )
                         }
                   </div>

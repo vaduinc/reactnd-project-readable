@@ -383,14 +383,20 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   font-size: 0;
 }
 
-.showing-contacts {
-  text-align: center;
-  margin: 20px 0;
+.category-changer {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('./icons/category.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
-.showing-contacts button {
-  color: blue;
-  background: transparent;
-  border: none;
+.category-changer select {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
   cursor: pointer;
-  font-size: inherit;
 }

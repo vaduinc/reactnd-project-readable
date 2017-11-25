@@ -4,11 +4,17 @@ import serializeForm from 'form-serialize'
 import { connect } from 'react-redux';
 import { withRouter , Link} from 'react-router-dom'
 import Votes from './Votes'
+import AlertContainer from 'react-alert'
+import {alertOptions} from '../utils/msgUtil'
 
 class CommentSave extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        this.msg.show('Saving data...', {
+            time: 1000,
+            type: 'success'
+          })
         const values = serializeForm(e.target, { hash: true })
         if (this.props.action==='add'){
             values.parentId = this.props.postId
@@ -37,6 +43,7 @@ class CommentSave extends Component {
         
         return (    
             <div className="w3-col l12 s12">
+                <AlertContainer ref={a => this.msg = a} {...alertOptions} />
                 <div className="w3-card-4 w3-margin w3-light-grey">
                     <form onSubmit={this.handleSubmit} ref="form" >
                         <div className="w3-container">

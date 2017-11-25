@@ -5,12 +5,33 @@ import { connect } from 'react-redux';
 import { withRouter , Link} from 'react-router-dom';
 import CategorySelect from './CategorySelect'
 import Votes from './Votes'
+import AlertContainer from 'react-alert'
+import {alertOptions} from '../utils/msgUtil'
 
 
 class PostSave extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+          cat: undefined
+        }
+     }
+
+    changeCategory = (newValue) => {
+        this.setState({
+            cat : newValue
+        })
+    } 
+
     handleSubmit = (e) => {
         e.preventDefault()
+
+        this.msg.show('Saving data...', {
+            time: 1000,
+            type: 'success'
+          })
+
         const values = serializeForm(e.target, { hash: true })
         if (this.props.match.params.action==='add'){
             this.props.savePost(values)
@@ -37,17 +58,23 @@ class PostSave extends Component {
         
         return (    
             <div className="w3-card-4 w3-margin w3-white">
+                <AlertContainer ref={a => this.msg = a} {...alertOptions} />
                 <form onSubmit={this.handleSubmit} >
                     <div className="w3-container">
                         <div className="w3-row">
-                            <div className="w3-col m4 s12">
+                            <div className="w3-col m12 s12">
+                                <h3 className="w3-text-orange" >POST {action}</h3>
+                            </div>          
+                        </div>    
+                        <div className="w3-row">
+                            <div className="w3-col m6 s12">
                                 <input name="title" type='text' defaultValue={currentPost?currentPost.title:''} placeholder='post title' className="w3-input" />
                             </div> 
                             <div className="w3-col m4 ">
                                 <input name="author" type='text' defaultValue={currentPost?currentPost.author:''} placeholder='author' className="w3-input" />
                             </div>     
-                            <div className="w3-col m4 ">
-                                <CategorySelect />
+                            <div className="w3-col m2 w3-right">
+                                <CategorySelect changeCategory={this.changeCategory} selectedCategory={this.state.cat?this.state.cat:(currentPost?currentPost.category:'')} />
                             </div>          
                         </div>  
                         <div className="w3-row">  

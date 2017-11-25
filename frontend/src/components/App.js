@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import CategoryList from './CategoryList'
 import PostList from './PostList'
 import Post from './Post'
 import PostSave from './PostSave'
@@ -38,6 +37,7 @@ class App extends Component {
 
 
   render() {
+
     return (
       <div className="w3-content" style={{maxwidth: 800}} >
 
@@ -46,7 +46,6 @@ class App extends Component {
           <Route exact path='/' render={() => (
               <div className="w3-card-4 w3-margin w3-white">
                 <ToolBar selectedCategory={this.state.selectedCategory} changeSort={this.changeSort} changeCategory={this.changeCategory} />
-                <CategoryList onChangeCategory={this.changeCategory} />
                 <PostList sorted={this.state.sortBy} filterCategory={this.state.selectedCategory}/>
               </div>
           )}/>  

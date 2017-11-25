@@ -24,7 +24,7 @@ class PostList extends Component {
 
         return (    
 
-            <div className="w3-col l10 s9">     
+            <div className="w3-col l12">     
                 
                 { 
                     filteredPost.map( (post) => (
