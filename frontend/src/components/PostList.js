@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link  } from 'react-router-dom'
-import {fetchPosts,sendVote} from '../actions/postActions'
+import {fetchPosts,sendVote,deletePost} from '../actions/postActions'
 import Votes from './Votes'
 import {dynamicSort} from '../utils/sortUtil'
 
@@ -11,9 +11,15 @@ class PostList extends Component {
         this.props.fetchPosts()
     }
 
+    onDelete =(postId) => {
+        this.props.deletePost(postId)
+    }
+
     render() {
 
         const { dataCollection } = this.props.posts
+
+        let uriPath = this.props.filterCategory || 'post'
 
         let filteredPost = dataCollection || []
         if (this.props.filterCategory){
@@ -24,7 +30,7 @@ class PostList extends Component {
 
         return (    
 
-            <div className="w3-col l12">     
+            <div className="w3-col l10">     
                 
                 { 
                     filteredPost.map( (post) => (
@@ -37,10 +43,20 @@ class PostList extends Component {
                         <div className="w3-container">
                             <p>{post.body}</p>
                             <div className="w3-row">
-                                <div className="w3-col m5 s9">
-                                    <p className="more-link"><Link to={`/post/${post.id}`} >... more</Link></p>
+                                <div className="w3-col m1 s9">
+                                    <p className="more-link"><Link to={`/${uriPath}/${post.id}`} >... more</Link></p>
                                 </div>
-                                <div className="w3-col m7 w3-hide-small">
+                                <div className="w3-col m1">
+                                    <p className="delete-button">
+                                        <button type='button' onClick={()=> this.onDelete(post.id)} className="w3-button w3-padding-large w3-white w3-border"><b>Delete</b></button>
+                                    </p>
+                                </div>
+                                <div className="w3-col m1">
+                                    <p className='edit-link'>
+                                        <Link to={`/postSave/edit/${post.id}`} >Edit</Link>
+                                    </p>
+                                </div>
+                                <div className="w3-col m9 w3-hide-small">
                                     <Votes enableChange='true' id={post.id}  voteScore={post.voteScore} voteType='post' />
                                 </div>
                             </div>
@@ -58,4 +74,4 @@ const mapStateToProps = ({ comments, posts, categories }) => ({
     posts
 })
 
-export default connect(mapStateToProps,{fetchPosts,sendVote})(PostList)
+export default connect(mapStateToProps,{fetchPosts,sendVote,deletePost})(PostList)

@@ -33,10 +33,10 @@ class PostSave extends Component {
           })
 
         const values = serializeForm(e.target, { hash: true })
-        if (this.props.match.params.action==='add'){
+        if (this.props.action==='add'){
             this.props.savePost(values)
                 .then( () => this.goPostEdit(values.id))
-        }else if (this.props.match.params.action==='edit'){
+        }else if (this.props.action==='edit'){
             values.id = this.props.match.params.postId
             this.props.updatePost(values)
         }    
@@ -48,7 +48,8 @@ class PostSave extends Component {
 
     
     render() {
-        const { action, postId } = this.props.match.params
+        const { postId } = this.props.match.params
+        const { action } = this.props
         const { dataCollection } = this.props.posts
 
         let currentPost 

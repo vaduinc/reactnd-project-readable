@@ -50,7 +50,7 @@ class Post extends Component {
                         <div className="w3-row">
                             <div className="w3-col m1 s12">
                                     <p className="return-link">
-                                        <Link to={'/'} >Edit</Link>
+                                        <Link to={'/'} >Return</Link>
                                     </p>    
                             </div>
                             <div className="w3-col m1">

@@ -56,10 +56,10 @@ export const updatePost = (post) => dispatch => (
         .then(updatedPost => dispatch(editPost(updatedPost)))
 )
 
-export const removePost = (updatedPost) => {
+export const removePost = (removedPost) => {
     return {
         type: REMOVE_POST,
-        updatedPost
+        removedPost
     }
 }
 

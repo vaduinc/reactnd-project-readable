@@ -45,7 +45,7 @@ function posts (state = [], action){
                 ...state,
                 dataCollection: state.dataCollection.concat(post)
             }
-        case EDIT_POST : case UP_VOTE_POST : case DOWN_VOTE_POST: case REMOVE_POST:
+        case EDIT_POST : case UP_VOTE_POST : case DOWN_VOTE_POST:
             const { updatedPost } = action
             return {dataCollection : state.dataCollection.map( (item) => {
                             if (item.id !== updatedPost.id){
@@ -62,7 +62,16 @@ function posts (state = [], action){
             return {
                 ...state,
                 dataCollection: posts
-            }      
+            } 
+        case REMOVE_POST :
+            const { removedPost } = action
+            console.log(removedPost)
+            return {
+                ...state,
+                dataCollection: state.dataCollection.filter((item) => {
+                     return item.id !== removedPost.id
+                }  )
+            }                   
         default :
             return state    
     }
