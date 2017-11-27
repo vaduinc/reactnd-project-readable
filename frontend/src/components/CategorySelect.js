@@ -4,18 +4,11 @@ import {fetchCategories} from '../actions/categoryActions'
 
 class CategorySelect extends Component {
 
-    // componentWillReceiveProps(){
-    //     if (this.props.selectedCategory){
-    //         this.setState({categoryForThisInstance: this.props.selectedCategory})
-    //     }    
-    // }  
-
     componentDidMount() {
         this.props.fetchCategories()
     }
 
     changeSelection = (e) => {
-        console.log('within category Select ' + e.target.value)
         this.props.changeCategory(e.target.value)
     }
 

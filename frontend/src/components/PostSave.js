@@ -53,53 +53,61 @@ class PostSave extends Component {
         const { dataCollection } = this.props.posts
 
         let currentPost 
-        if (action==='edit'){
+        if (action==='edit' && dataCollection){
            currentPost = dataCollection.filter( (item) => item.id===postId)[0]
         } 
         
         return (    
             <div className="w3-card-4 w3-margin w3-white">
-                <AlertContainer ref={a => this.msg = a} {...alertOptions} />
-                <form onSubmit={this.handleSubmit} >
-                    <div className="w3-container">
-                        <div className="w3-row">
-                            <div className="w3-col m12 s12">
-                                <h3 className="w3-text-orange" >POST {action}</h3>
-                            </div>          
-                        </div>    
-                        <div className="w3-row">
-                            <div className="w3-col m6 s12">
-                                <input name="title" type='text' defaultValue={currentPost?currentPost.title:''} placeholder='post title' className="w3-input" />
-                            </div> 
-                            <div className="w3-col m4 ">
-                                <input name="author" type='text' defaultValue={currentPost?currentPost.author:''} placeholder='author' className="w3-input" />
-                            </div>     
-                            <div className="w3-col m2 w3-right">
-                                <CategorySelect changeCategory={this.changeCategory} selectedCategory={this.state.cat?this.state.cat:(currentPost?currentPost.category:'')} />
-                            </div>          
-                        </div>  
-                        <div className="w3-row">  
-                            <div className="w3-col m12 s12">
-                                <textarea name="body" defaultValue={currentPost?currentPost.body:''}  placeholder='body content' className="w3-input" />
-                            </div>    
-                        </div>
-                        <div className="w3-row">
-                            <div className="w3-col m1 s12">
-                                <p className="return-link">
-                                    <Link to={action==='add'?'/':`/post/${postId}`} >Return</Link>
-                                </p>
+                { !dataCollection &&(
+                    <h2>There was an issue loading this form. Click the back button, refresh and try it again.</h2>  
+                )}
+
+                { dataCollection &&(
+                    <div>
+                        <AlertContainer ref={a => this.msg = a} {...alertOptions} />
+                        <form onSubmit={this.handleSubmit} >
+                            <div className="w3-container">
+                                <div className="w3-row">
+                                    <div className="w3-col m12 s12">
+                                        <h3 className="w3-text-orange" >POST {action}</h3>
+                                    </div>          
+                                </div>    
+                                <div className="w3-row">
+                                    <div className="w3-col m6 s12">
+                                        <input name="title" type='text' defaultValue={currentPost?currentPost.title:''} placeholder='post title' className="w3-input" />
+                                    </div> 
+                                    <div className="w3-col m4 ">
+                                        <input name="author" type='text' defaultValue={currentPost?currentPost.author:''} placeholder='author' className="w3-input" />
+                                    </div>     
+                                    <div className="w3-col m2 w3-right">
+                                        <CategorySelect changeCategory={this.changeCategory} selectedCategory={this.state.cat?this.state.cat:(currentPost?currentPost.category:'')} />
+                                    </div>          
+                                </div>  
+                                <div className="w3-row">  
+                                    <div className="w3-col m12 s12">
+                                        <textarea name="body" defaultValue={currentPost?currentPost.body:''}  placeholder='body content' className="w3-input" />
+                                    </div>    
+                                </div>
+                                <div className="w3-row">
+                                    <div className="w3-col m1 s12">
+                                        <p className="return-link">
+                                            <Link to={action==='add'?'/':`/post/${postId}`} >Return</Link>
+                                        </p>
+                                    </div>
+                                    <div className="w3-col m1">
+                                        <p className="save-button">    
+                                            <button type="submit" className="w3-button w3-padding-large w3-white w3-border">Save</button>
+                                        </p>
+                                    </div>
+                                    <div className="w3-col m10 w3-hide-small">
+                                        <Votes enableChange={false} postId={currentPost?currentPost.id:0}  voteScore={currentPost?currentPost.voteScore:0}/>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="w3-col m1">
-                                <p className="save-button">    
-                                    <button type="submit" className="w3-button w3-padding-large w3-white w3-border">Save</button>
-                                </p>
-                            </div>
-                            <div className="w3-col m10 w3-hide-small">
-                                <Votes enableChange={false} postId={currentPost?currentPost.id:0}  voteScore={currentPost?currentPost.voteScore:0}/>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                        </form>
+                     </div>
+                )}
             </div>
         )
     }

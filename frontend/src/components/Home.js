@@ -11,16 +11,9 @@ class Home extends Component {
     constructor(props) {
       super(props)
       this.state = {
-      //  selectedCategory: undefined,
         sortBy: 'voteScore'
       }
     }
-
-  //  changeCategory = (newValue) => {
-  //     this.setState({
-  //       selectedCategory : newValue
-  //     })
-  //  }
 
    changeSort = (sorted) => {
       let newSort = '-'+sorted
