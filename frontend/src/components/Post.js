@@ -53,8 +53,8 @@ const Post = props => {
                             </div>   
                             <div className="w3-row">
                                 <div className="w3-col m1 s12">
-                                        <p className="return-link">
-                                            <Link to={'/'} >Return</Link>
+                                        <p className="home-button">
+                                            <Link to={'/'} >Home</Link>
                                         </p>    
                                 </div>
                                 <div className="w3-col m1">

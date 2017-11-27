@@ -18,10 +18,8 @@ class CategoryList extends Component {
                 <div className="w3-card w3-margin w3-light-grey">
                     <div className="w3-container w3-padding">
                         <h4>Categories</h4>
-                        <p className='funnel-button'><button>Filter</button></p>
                     </div>
-                    <hr/>
-                    <ul className="w3-ul w3-hoverable">
+                    <ul className="w3-ul w3-center w3-hoverable">
                         { dataCollection && (
                             dataCollection.map( (category) => (
                                 <li key={category.name} className="w3-padding-16">

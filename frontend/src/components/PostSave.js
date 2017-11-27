@@ -91,16 +91,23 @@ class PostSave extends Component {
                                 </div>
                                 <div className="w3-row">
                                     <div className="w3-col m1 s12">
-                                        <p className="return-link">
-                                            <Link to={action==='add'?'/':`/post/${postId}`} >Return</Link>
+                                        <p className="home-button">
+                                            <Link to={'/'} >Home</Link>
                                         </p>
                                     </div>
+                                    {action!=='add' && (
+                                        <div className="w3-col m1">
+                                            <p className="return-link">
+                                                <Link to={`/post/${postId}`} >Details</Link>
+                                            </p>
+                                        </div>
+                                    )}
                                     <div className="w3-col m1">
                                         <p className="save-button">    
                                             <button type="submit" className="w3-button w3-padding-large w3-white w3-border">Save</button>
                                         </p>
                                     </div>
-                                    <div className="w3-col m10 w3-hide-small">
+                                    <div className="w3-col m9 w3-hide-small">
                                         <Votes enableChange={false} postId={currentPost?currentPost.id:0}  voteScore={currentPost?currentPost.voteScore:0}/>
                                     </div>
                                 </div>
