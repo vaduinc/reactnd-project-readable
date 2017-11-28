@@ -222,8 +222,8 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: black;
-  background-image: url('./icons/add.svg');
+  background: white;
+  background-image: url('./icons/blog.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 28px;
@@ -307,7 +307,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   height: 50px;
   border-radius: 50%;
   background: white;
-  background-image: url('./icons/rewind-to-beginning-with-left-arrow.svg');
+  background-image: url('./icons/blog.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 28px;

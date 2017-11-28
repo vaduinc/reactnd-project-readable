@@ -60,7 +60,10 @@ class PostSave extends Component {
         return (    
             <div className="w3-card-4 w3-margin w3-white">
                 { !dataCollection &&(
-                    <h2>There was an issue loading this form. Click the back button, refresh and try it again.</h2>  
+                    <h2 className="w3-left">
+                        There was an issue loading this form. Click the home button, and try it again.
+                        <p className="home-button"><Link to={'/'} >Home</Link></p>  
+                    </h2>  
                 )}
 
                 { dataCollection &&(

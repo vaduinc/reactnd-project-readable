@@ -33,20 +33,26 @@ Navigate the application using the following descriptions from the home page, se
 ![Home](screenshots/ss1.png "home")
 
 ```diff
-Post details page
 ```
+## Category filter
+
+![category filter](screenshots/ss5.png "category filter")
+
+```diff
+```
+## Post details page
 
 ![post details](screenshots/ss2.png "post details")
 
 ```diff
-Add or edit Post
 ```
+## Add / Edit post
 
 ![add/edit post](screenshots/ss3.png "add / edit post")
 
 ```diff
-Edit comment
 ```
+## Edit comment
 
 ![edit comment](screenshots/ss4.png "edit comment")
 
