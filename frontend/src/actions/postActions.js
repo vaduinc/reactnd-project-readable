@@ -1,4 +1,4 @@
-import {saveVote, getPosts,saveNewPosts,saveExistingPosts,erasePost} from '../utils/postApiUtil'
+import {saveVote, getPost, getPosts,saveNewPosts,saveExistingPosts,erasePost} from '../utils/postApiUtil'
 import * as TYPES from './actionTypes'
 
 export const vote = (voteType,updatedPost) => {
@@ -24,6 +24,19 @@ export const receivePosts = (posts) => {
 export const fetchPosts = () => dispatch => (
     getPosts()
         .then(posts => dispatch(receivePosts(posts)))
+)
+
+export const receivePost = (loadedPost) => {
+    return {
+        type: TYPES.RECEIVE_POST,
+        loadedPost
+    }
+}
+
+export const fetchPost = (postId) => dispatch => (
+    getPost(postId)
+        .then(post => dispatch(receivePost(post)))
+        //.then(post => post)
 )
 
 export const addPost = (post) => {

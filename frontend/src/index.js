@@ -34,16 +34,16 @@ ReactDOM.render(
                       selCategory={props.match.params.category}
                     />
                 )}/>
-                <Route exact path='/postSave/edit/:postId' render={({ history }) => (
+                <Route exact path='/postSave/edit/:postId' render={() => (
                   <PostSave  action='edit' />
                 )}/>
-                <Route exact path='/postSave/add' render={({ history }) => (
+                <Route exact path='/postSave/add' render={() => (
                   <PostSave  action='add' />
                 )}/>
-                <Route exact path='/:category/:postId?' render={({ history }) => (
-                  <Post onSavedPost={ () => {
-                    history.push('/')
-                  } } />
+                <Route exact path='/:category/:postId?' render={(props) => (
+                  <Post 
+                      postId={props.match.params.postId}
+                 />
                 )}/>
                 <Route exact path='/commentSave/:action/:commentId?' render={(props) => (
                   <CommentSave 

@@ -35,7 +35,13 @@ export function posts (state = [], action){
                 dataCollection: state.dataCollection.filter((item) => {
                      return item.id !== removedPost.id
                 }  )
-            }                   
+            }
+        case TYPES.RECEIVE_POST :
+            const { loadedPost } = action
+            return {
+                ...state,
+                loadedPost
+            }                       
         default :
             return state    
     }

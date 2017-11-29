@@ -8,6 +8,13 @@ export function getPosts() {
       .then( (res) =>  res.json() )
 }
 
+export function getPost(postId) {
+    const url = `${configURL}/posts/${postId}`
+    
+    return fetch(url, { headers: HEADERS })
+      .then( (res) =>  res.json() )
+}
+
 export function saveNewPosts(post) {
     const url = `${configURL}/posts`;
     post.id = v4()
