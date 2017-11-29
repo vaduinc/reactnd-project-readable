@@ -40,11 +40,6 @@ ReactDOM.render(
                 <Route exact path='/postSave/add' render={({ history }) => (
                   <PostSave  action='add' />
                 )}/>
-                <Route path='/post/:postId?' render={({ history }) => (
-                  <Post onSavedPost={ () => {
-                    history.push('/')
-                  } } />
-                )}/>
                 <Route exact path='/:category/:postId?' render={({ history }) => (
                   <Post onSavedPost={ () => {
                     history.push('/')

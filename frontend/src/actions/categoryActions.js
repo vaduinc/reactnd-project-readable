@@ -1,10 +1,9 @@
 import {getCategories} from '../utils/categoryApiUtil'
-
-export const RECEIVE_ALL_CATEGORIES = 'RECEIVE_ALL_CATEGORIES'
+import * as TYPES from './actionTypes'
 
 export const receiveCategories = (categories) => {
     return {
-        type: RECEIVE_ALL_CATEGORIES,
+        type: TYPES.RECEIVE_ALL_CATEGORIES,
         categories
     }
 }

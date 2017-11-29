@@ -1,11 +1,5 @@
 import {getComments,saveNewComment,saveExistingComment,saveVote,eraseComment} from '../utils/commentApiUtil'
-
-export const ADD_COMMENT = 'ADD_COMMENT'
-export const EDIT_COMMENT = 'EDIT_COMMENT'
-export const REMOVE_COMMENT = 'REMOVE_COMMENT'
-export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT'
-export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT'
-export const RECEIVE_ALL_COMMENTS = 'RECEIVE_ALL_COMMENTS'
+import * as TYPES from './actionTypes'
 
 export const vote = (voteType,updatedComment) => {
     return {
@@ -22,7 +16,7 @@ export const sendVoteComment = (commentId,voteType) => dispatch => (
 
 export const receiveComments = (comments) => {
     return {
-        type: RECEIVE_ALL_COMMENTS,
+        type: TYPES.RECEIVE_ALL_COMMENTS,
         comments
     }
 }
@@ -35,7 +29,7 @@ export const fetchComments = (postId) => dispatch => (
 
 export const addComment = (comment) => {
     return {
-        type: ADD_COMMENT,
+        type: TYPES.ADD_COMMENT,
         comment
     }
 }
@@ -47,7 +41,7 @@ export const saveComment = (newComment) => dispatch => (
 
 export const editComment = (updatedComment) => {
     return {
-        type: EDIT_COMMENT,
+        type: TYPES.EDIT_COMMENT,
         updatedComment
     }
 }
@@ -59,7 +53,7 @@ export const updateComment = (Comment) => dispatch => (
 
 export const removeComment = (updatedComment) => {
     return {
-        type: REMOVE_COMMENT,
+        type: TYPES.REMOVE_COMMENT,
         updatedComment
     }
 }

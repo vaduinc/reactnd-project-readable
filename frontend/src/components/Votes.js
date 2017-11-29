@@ -1,15 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {sendVote,UP_VOTE_POST,DOWN_VOTE_POST} from '../actions/postActions'
-import {sendVoteComment,UP_VOTE_COMMENT,DOWN_VOTE_COMMENT} from '../actions/commentActions'
+import {sendVote} from '../actions/postActions'
+import {sendVoteComment} from '../actions/commentActions'
+import * as TYPES from '../actions/actionTypes'
 
 const Votes = props => {
 
     function onVote (id,type,voteType) {
         if (voteType==='post'){
-            props.sendVote(id,type==='UP'?UP_VOTE_POST:DOWN_VOTE_POST)
+            props.sendVote(id,type==='UP'?TYPES.UP_VOTE_POST:TYPES.DOWN_VOTE_POST)
         } else if (voteType==='comment'){ 
-            props.sendVoteComment(id,type==='UP'?UP_VOTE_COMMENT:DOWN_VOTE_COMMENT)
+            props.sendVoteComment(id,type==='UP'?TYPES.UP_VOTE_COMMENT:TYPES.DOWN_VOTE_COMMENT)
         }
     }
 

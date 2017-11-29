@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link  } from 'react-router-dom'
-import {fetchComments,deleteComment} from '../actions/commentActions'
+import * as actions from '../actions/commentActions'
 import Votes from './Votes'
 import {dynamicSort} from '../utils/sortUtil'
 
@@ -61,4 +61,4 @@ const mapStateToProps = ({ comments, posts, categories }) => ({
     comments
 })
 
-export default connect(mapStateToProps,{fetchComments,deleteComment})(CommentList)
+export default connect(mapStateToProps,actions)(CommentList)

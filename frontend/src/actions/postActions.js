@@ -1,11 +1,5 @@
 import {saveVote, getPosts,saveNewPosts,saveExistingPosts,erasePost} from '../utils/postApiUtil'
-
-export const ADD_POST = 'ADD_POST'
-export const EDIT_POST = 'EDIT_POST'
-export const REMOVE_POST = 'REMOVE_POST'
-export const UP_VOTE_POST = 'UP_VOTE_POST'
-export const DOWN_VOTE_POST = 'DOWN_VOTE_POST'
-export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS'
+import * as TYPES from './actionTypes'
 
 export const vote = (voteType,updatedPost) => {
     return {
@@ -22,7 +16,7 @@ export const sendVote = (postId,voteType) => dispatch => (
 
 export const receivePosts = (posts) => {
     return {
-        type: RECEIVE_ALL_POSTS,
+        type: TYPES.RECEIVE_ALL_POSTS,
         posts
     }
 }
@@ -34,7 +28,7 @@ export const fetchPosts = () => dispatch => (
 
 export const addPost = (post) => {
     return {
-        type: ADD_POST,
+        type: TYPES.ADD_POST,
         post
     }
 }
@@ -46,7 +40,7 @@ export const savePost = (newPost) => dispatch => (
 
 export const editPost = (updatedPost) => {
     return {
-        type: EDIT_POST,
+        type: TYPES.EDIT_POST,
         updatedPost
     }
 }
@@ -58,7 +52,7 @@ export const updatePost = (post) => dispatch => (
 
 export const removePost = (removedPost) => {
     return {
-        type: REMOVE_POST,
+        type: TYPES.REMOVE_POST,
         removedPost
     }
 }

@@ -101,7 +101,7 @@ class PostSave extends Component {
                                     {action!=='add' && (
                                         <div className="w3-col m1">
                                             <p className="return-link">
-                                                <Link to={`/post/${postId}`} >Details</Link>
+                                                <Link to={`/${currentPost.category}/${postId}`} >Details</Link>
                                             </p>
                                         </div>
                                     )}

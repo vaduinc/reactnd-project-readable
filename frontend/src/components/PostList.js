@@ -19,8 +19,6 @@ class PostList extends Component {
 
         const { dataCollection } = this.props.posts
 
-        let uriPath = this.props.filterCategory || 'post'
-
         let filteredPost = dataCollection || []
         if (this.props.filterCategory){
             filteredPost = filteredPost.filter((item) => item.category===this.props.filterCategory)
@@ -44,7 +42,7 @@ class PostList extends Component {
                             <p>{post.body}</p>
                             <div className="w3-row">
                                 <div className="w3-col m1 s9">
-                                    <p className="more-link"><Link to={`/${uriPath}/${post.id}`} >... more</Link></p>
+                                    <p className="more-link"><Link to={`/${post.category}/${post.id}`} >... more</Link></p>
                                 </div>
                                 <div className="w3-col m1">
                                     <p className="delete-button">
