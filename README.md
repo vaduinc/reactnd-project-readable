@@ -1,7 +1,7 @@
 # Readable
 
 This project is composed by 2 modules; Frontend and API server.
-Please check the two next link to get the details of each.
+Please check the next two links to get the details of each.
 
 ## Frontend
 
