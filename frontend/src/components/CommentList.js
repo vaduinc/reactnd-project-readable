@@ -13,10 +13,10 @@ class CommentList extends Component {
 
     onDelete =(commentId) => {
         this.props.deleteComment(commentId)
+        this.props.reloadPost()
     }
 
     render() {
-
         const { dataCollection } = this.props.comments
 
         let filteredComment = dataCollection || []

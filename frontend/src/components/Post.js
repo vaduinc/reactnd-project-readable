@@ -9,6 +9,11 @@ import {deletePost,fetchPost} from '../actions/postActions'
 class Post extends Component {
 
     componentDidMount() {
+        this.reloadPost()
+    }
+
+    reloadPost(){
+        console.log('loging post...')
         this.props.fetchPost(this.props.postId)
     }
 
@@ -22,7 +27,7 @@ class Post extends Component {
     }
 
     render() {
-        const { postId } = this.props
+        const { postId,currentCategory } = this.props
         let currentPost = this.props.posts.loadedPost
           
         return (    
@@ -82,10 +87,10 @@ class Post extends Component {
                         </form>
 
                         <div>
-                            <CommentSave action={'add'} postId={postId} />
+                            <CommentSave reloadPost={() => {this.reloadPost()}} action={'add'} postId={postId} />
                         </div>
                         <div>
-                            <CommentList postId={postId} />
+                            <CommentList currentCategory={currentCategory} reloadPost={() => {this.reloadPost()}} postId={postId} />
                         </div>
 
                     </div>

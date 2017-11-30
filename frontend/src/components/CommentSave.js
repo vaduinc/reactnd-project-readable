@@ -19,7 +19,10 @@ class CommentSave extends Component {
         if (this.props.action==='add'){
             values.parentId = this.props.postId
             this.props.saveComment(values)
-                .then( () => this.cleanForm())
+                .then( () => {
+                             this.cleanForm()
+                             this.props.reloadPost()
+                            })
         }else if (this.props.action==='edit'){
             values.id = this.props.commentId
             this.props.updateComment(values)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {savePost,updatePost} from '../actions/postActions'
+import {savePost,updatePost,fetchPost} from '../actions/postActions'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux';
 import { withRouter , Link} from 'react-router-dom';
@@ -14,15 +14,39 @@ class PostSave extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          cat: undefined
+            currentPost :{
+                category: '',
+                title: '',
+                author: '',
+                body:'',
+                id:'',
+                voteScore:0
+            }    
         }
-     }
+     } 
+    
+    componentDidMount() {
+        console.log(this.props.postId)
+        if (this.props.action==='edit'){
+               console.log(this.props.postId)
+                this.props.fetchPost(this.props.postId)
+                    .then((action) => this.handleInputChange(action.loadedPost))
+        }        
+    }
 
     changeCategory = (newValue) => {
-        this.setState({
-            cat : newValue
-        })
+        this.handleInputChange({category: newValue})
     } 
+
+    handleInputChange(newPartialInput) {
+        this.setState(state => ({
+            ...state,
+            currentPost: {
+                ...state.currentPost,
+                ...newPartialInput
+            }
+        }))
+    }
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -37,7 +61,7 @@ class PostSave extends Component {
             this.props.savePost(values)
                 .then( () => this.goPostEdit(values.id))
         }else if (this.props.action==='edit'){
-            values.id = this.props.match.params.postId
+            values.id = this.props.postId
             this.props.updatePost(values)
         }    
     }
@@ -48,76 +72,61 @@ class PostSave extends Component {
 
     
     render() {
-        const { postId } = this.props.match.params
-        const { action } = this.props
-        const { dataCollection } = this.props.posts
-
-        let currentPost 
-        if (action==='edit' && dataCollection){
-           currentPost = dataCollection.filter( (item) => item.id===postId)[0]
-        } 
-        
+        const { action,postId } = this.props
+        const {currentPost} = this.state
         return (    
+            
             <div className="w3-card-4 w3-margin w3-white">
-                { !dataCollection &&(
-                    <h2 className="w3-left">
-                        There was an issue loading this form. Click the home button, and try it again.
-                        <p className="home-button"><Link to={'/'} >Home</Link></p>  
-                    </h2>  
-                )}
-
-                { dataCollection &&(
-                    <div>
-                        <AlertContainer ref={a => this.msg = a} {...alertOptions} />
-                        <form onSubmit={this.handleSubmit} >
-                            <div className="w3-container">
-                                <div className="w3-row">
-                                    <div className="w3-col m12 s12">
-                                        <h3 className="w3-text-orange" >POST {action}</h3>
-                                    </div>          
+                <div>
+                    <AlertContainer ref={a => this.msg = a} {...alertOptions} />
+                    <form onSubmit={this.handleSubmit} >
+                        <div className="w3-container">
+                            <div className="w3-row">
+                                <div className="w3-col m12 s12">
+                                    <h3 className="w3-text-orange" >POST {action}</h3>
+                                </div>          
+                            </div>    
+                            <div className="w3-row">
+                                <div className="w3-col m6 s12">
+                                    <input  onChange={e => this.handleInputChange({title: e.target.value})} name="title" value={currentPost.title} placeholder='post title' className="w3-input" />
+                                </div> 
+                                <div className="w3-col m4 ">
+                                    <input onChange={e => this.handleInputChange({author: e.target.value})} name="author" value={currentPost.author} placeholder='author' className="w3-input" />
+                                </div>     
+                                <div className="w3-col m2 w3-right">
+                                    <CategorySelect changeCategory={this.changeCategory} selectedCategory={currentPost.category} />
+                                </div>          
+                            </div>  
+                            <div className="w3-row">  
+                                <div className="w3-col m12 s12">
+                                    <textarea onChange={e => this.handleInputChange({body: e.target.value})} name="body" value={currentPost.body}  placeholder='body content' className="w3-input" />
                                 </div>    
-                                <div className="w3-row">
-                                    <div className="w3-col m6 s12">
-                                        <input name="title" type='text' defaultValue={currentPost?currentPost.title:''} placeholder='post title' className="w3-input" />
-                                    </div> 
-                                    <div className="w3-col m4 ">
-                                        <input name="author" type='text' defaultValue={currentPost?currentPost.author:''} placeholder='author' className="w3-input" />
-                                    </div>     
-                                    <div className="w3-col m2 w3-right">
-                                        <CategorySelect changeCategory={this.changeCategory} selectedCategory={this.state.cat?this.state.cat:(currentPost?currentPost.category:'')} />
-                                    </div>          
-                                </div>  
-                                <div className="w3-row">  
-                                    <div className="w3-col m12 s12">
-                                        <textarea name="body" defaultValue={currentPost?currentPost.body:''}  placeholder='body content' className="w3-input" />
-                                    </div>    
+                            </div>
+                            <div className="w3-row">
+                                <div className="w3-col m1 s12">
+                                    <p className="home-button">
+                                        <Link to={'/'} >Home</Link>
+                                    </p>
                                 </div>
-                                <div className="w3-row">
-                                    <div className="w3-col m1 s12">
-                                        <p className="home-button">
-                                            <Link to={'/'} >Home</Link>
-                                        </p>
-                                    </div>
-                                    {action!=='add' && (
-                                        <div className="w3-col m1">
-                                            <p className="return-link">
-                                                <Link to={`/${currentPost.category}/${postId}`} >Details</Link>
-                                            </p>
-                                        </div>
-                                    )}
+                                {action!=='add' && (
                                     <div className="w3-col m1">
-                                        <p className="save-button">    
-                                            <button type="submit" className="w3-button w3-padding-large w3-white w3-border">Save</button>
+                                        <p className="return-link">
+                                            <Link to={`/${currentPost.category}/${postId}`} >Details</Link>
                                         </p>
                                     </div>
-                                    <div className="w3-col m9 w3-hide-small">
-                                        <Votes enableChange={false} postId={currentPost?currentPost.id:0}  voteScore={currentPost?currentPost.voteScore:0}/>
-                                    </div>
+                                )}
+                                <div className="w3-col m1">
+                                    <p className="save-button">    
+                                        <button type="submit" className="w3-button w3-padding-large w3-white w3-border">Save</button>
+                                    </p>
+                                </div>
+                                <div className="w3-col m9 w3-hide-small">
+                                    <Votes enableChange={false} postId={currentPost.id}  voteScore={currentPost.voteScore}/>
                                 </div>
                             </div>
-                        </form>
-                     </div>
-                )}
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }
@@ -131,7 +140,8 @@ const mapStateToProps = ({ comments, posts, categories }) => ({
 const mapDispatchToProps = (dispatch)  => (
         {
             savePost:   (values) => dispatch(savePost(values)),
-            updatePost: (values) => dispatch(updatePost(values))
+            updatePost: (values) => dispatch(updatePost(values)),
+            fetchPost: (postId) => dispatch(fetchPost(postId))            
         }
     )
 
