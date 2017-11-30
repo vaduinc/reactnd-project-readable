@@ -45,7 +45,6 @@ ReactDOM.render(
                 )}/>
                 <Route exact path='/:category/:postId' render={(props) => (
                   <Post 
-                      currentCategory={props.match.params.category}
                       postId={props.match.params.postId}
                       onSavedPost={ () => {
                         props.history.push('/')

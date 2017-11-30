@@ -15,7 +15,7 @@ class PostSave extends Component {
         super(props)
         this.state = {
             currentPost :{
-                category: '',
+                category: 'react',
                 title: '',
                 author: '',
                 body:'',
@@ -26,11 +26,9 @@ class PostSave extends Component {
      } 
     
     componentDidMount() {
-        console.log(this.props.postId)
         if (this.props.action==='edit'){
-               console.log(this.props.postId)
-                this.props.fetchPost(this.props.postId)
-                    .then((action) => this.handleInputChange(action.loadedPost))
+            this.props.fetchPost(this.props.postId)
+                .then((action) => this.handleInputChange(action.loadedPost))
         }        
     }
 

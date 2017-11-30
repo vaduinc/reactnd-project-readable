@@ -40,38 +40,48 @@ class CommentSave extends Component {
         const { dataCollection } = this.props.comments
 
         let currentComment 
-        if (action==='edit'){
+        if (action==='edit' && dataCollection){
            currentComment = dataCollection.filter( (item) => item.id===commentId)[0]
         } 
         
         return (    
             <div className="w3-col l12 s12">
                 <AlertContainer ref={a => this.msg = a} {...alertOptions} />
-                <div className="w3-card-4 w3-margin w3-light-grey">
-                    <form onSubmit={this.handleSubmit} ref="form" >
-                        <div className="w3-container">
-                            <div className="w3-row w3-padding-16">
-                                <div className="w3-col m9 s12"> 
-                                    <textarea ref="commentBody" name="body" defaultValue={currentComment?currentComment.body:''}  placeholder='join the discussion...' className="w3-input" />
-                                </div> 
-                                <div className="w3-col m3">
-                                    {currentComment && (<h3 className="w3-right">{currentComment.author}</h3> )}
-                                    {!currentComment && (<input ref="commentAuthor" name="author" type='text' placeholder='author' className="w3-simple-input  w3-right" />)}
-                                </div>          
-                            </div>   
-                            <div className="w3-row">
-                                {!currentComment && (<div className="w3-col m1"><p className='clear-button'><button type="button" className="w3-button w3-padding-large w3-white w3-border" onClick={this.cleanForm.bind(this)} >Clear</button></p></div>)}
-                                {currentComment && (<div className="w3-col m1"><p className="return-link"><Link to={`/post/${currentComment.parentId}`} >Return</Link></p></div>)}
-                                <div className="w3-col m2">
-                                    <p className='save-button'><button type="submit" className="w3-button w3-padding-large w3-white w3-border">Save</button></p>    
-                                </div>
-                                <div className="w3-col m5 w3-hide-small w3-right">
-                                    {currentComment && (<Votes enableChange={false} id={currentComment.id}  voteScore={currentComment.voteScore} voteType='comment' />)}
-                                </div>
-                            </div>         
-                        </div>
-                    </form>
-                </div>
+                { (!dataCollection) &&  (
+                    <h2 className="w3-left">
+                        Oops! something failed with the comment. Click the home icon to return.
+                        <p className="home-button"><Link to={'/'} >Home</Link></p>  
+                    </h2>  
+                )}
+
+                { (dataCollection) &&  (
+                    <div className="w3-card-4 w3-margin w3-light-grey">
+                        <form onSubmit={this.handleSubmit} ref="form" >
+                            <div className="w3-container">
+                                <div className="w3-row w3-padding-16">
+                                    <div className="w3-col m9 s12"> 
+                                        <textarea ref="commentBody" name="body" defaultValue={currentComment?currentComment.body:''}  placeholder='join the discussion...' className="w3-input" />
+                                    </div> 
+                                    <div className="w3-col m3">
+                                        {currentComment && (<h3 className="w3-right">{currentComment.author}</h3> )}
+                                        {!currentComment && (<input ref="commentAuthor" name="author" type='text' placeholder='author' className="w3-simple-input  w3-right" />)}
+                                    </div>          
+                                </div>   
+                                <div className="w3-row">
+                                    {!currentComment && (<div className="w3-col m1"><p className='clear-button'><button type="button" className="w3-button w3-padding-large w3-white w3-border" onClick={this.cleanForm.bind(this)} >Clear</button></p></div>)}
+                                    {currentComment && (<div className="w3-col m1"><p className="return-link"><Link to={`/post/${currentComment.parentId}`} >Return</Link></p></div>)}
+                                    <div className="w3-col m2">
+                                        <p className='save-button'><button type="submit" className="w3-button w3-padding-large w3-white w3-border">Save</button></p>    
+                                    </div>
+                                    <div className="w3-col m5 w3-hide-small w3-right">
+                                        {currentComment && (<Votes enableChange={false} id={currentComment.id}  voteScore={currentComment.voteScore} voteType='comment' />)}
+                                    </div>
+                                </div>         
+                            </div>
+                        </form>
+                    </div>
+                )}
+
             </div>
         )
     }

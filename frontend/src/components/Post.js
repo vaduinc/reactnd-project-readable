@@ -13,7 +13,6 @@ class Post extends Component {
     }
 
     reloadPost(){
-        console.log('loging post...')
         this.props.fetchPost(this.props.postId)
     }
 
@@ -26,20 +25,28 @@ class Post extends Component {
         this.onReturn()
     }
 
+    isEmpty(obj) {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
     render() {
         const { postId,currentCategory } = this.props
         let currentPost = this.props.posts.loadedPost
           
         return (    
             <div className="w3-card-4 w3-margin w3-white">
-                { !currentPost && (
+                { (!currentPost || this.isEmpty(currentPost) || currentPost.error) &&  (
                     <h2 className="w3-left">
                         This post is not valid or has been removed. Click the home icon to return.
                         <p className="home-button"><Link to={'/'} >Home</Link></p>  
                     </h2>  
                 )}
 
-                { currentPost && (
+                { currentPost && !this.isEmpty(currentPost) && !currentPost.error && (
                     <div>
                         <form onSubmit={this.handleSubmit} >
                             <div className="w3-container">
